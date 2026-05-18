@@ -70,6 +70,32 @@ See [docs/codex/refs/coding-standards.md](docs/codex/refs/coding-standards.md).
 
 See [docs/codex/refs/context-management.md](docs/codex/refs/context-management.md).
 
+## Path-Scoped Rules
+
+Codex CLI auto-loads only the nearest `AGENTS.md`. The rule files below contain
+coding standards that apply when editing specific kinds of files — the model
+must consult these manually when relevant:
+
+| When editing                              | Read                                  |
+|-------------------------------------------|---------------------------------------|
+| AI code (state machines, behavior trees)  | `.codex/rules/ai-code.md`             |
+| Data files (JSON, YAML, balance tables)   | `.codex/rules/data-files.md`          |
+| Design docs (GDDs, narrative, levels)     | `.codex/rules/design-docs.md`         |
+| Engine code (core systems, framework)     | `.codex/rules/engine-code.md`         |
+| Gameplay code (mechanics, player systems) | `.codex/rules/gameplay-code.md`       |
+| Narrative content (dialogue, lore)        | `.codex/rules/narrative.md`           |
+| Network code (replication, RPCs)          | `.codex/rules/network-code.md`        |
+| Prototype code (throwaway builds)         | `.codex/rules/prototype-code.md`      |
+| Shader code (HLSL, GLSL)                  | `.codex/rules/shader-code.md`         |
+| Tests (unit, integration)                 | `.codex/rules/test-standards.md`      |
+| UI code (menus, HUD)                      | `.codex/rules/ui-code.md`             |
+
+## Persona Memory
+
+Long-lived persona notes live under `.codex/persona-memory/<persona>/MEMORY.md`.
+Personas should read their own memory file at session start and append new
+durable observations as they accrue.
+
 ## Codex-Specific Notes
 
 - Custom slash-prompts live under `.codex/prompts/`. Type `/` in interactive
