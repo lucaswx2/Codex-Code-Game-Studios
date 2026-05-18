@@ -1,6 +1,7 @@
 #!/bin/bash
-# Claude Code PostToolUse hook: Advises running skill-test after skill file changes
-# Fires when any file inside .claude/skills/ is written or edited.
+# Codex post-write validator: advises running skill-test after prompt file changes.
+# Fires when any file inside .codex/prompts/ (or legacy .claude/skills/) is written or edited.
+# Originally derived from the Claude Code PostToolUse hook in `.claude/hooks/`.
 #
 # Exit behavior:
 #   exit 0 = advisory only (non-blocking)

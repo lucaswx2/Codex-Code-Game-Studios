@@ -1,8 +1,8 @@
 #!/bin/bash
-# Claude Code SessionStart hook: Load project context at session start
-# Outputs context information that Claude sees when a session begins
-#
-# Input schema (SessionStart): No stdin input
+# Codex CLI session_start hook: load project context at session start.
+# Outputs context information that the model sees when a session begins.
+# Originally derived from the Claude Code SessionStart hook in this repo's
+# `.claude/` legacy tree — see docs/codex/README.md for the migration story.
 
 echo "=== Codex Code Game Studios — Session Context ==="
 
