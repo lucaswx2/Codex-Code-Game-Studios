@@ -19,9 +19,9 @@ Do not guess at post-cutoff API signatures — look them up first.
 ## File Routing
 
 Match the engine-specialist agent to the file type being written.
-See `CLAUDE.md` → Technical Preferences → Engine Specialists → File Extension Routing.
+See `AGENTS.md` → Technical Preferences → Engine Specialists → File Extension Routing.
 
-When in doubt, use the primary engine specialist configured in `CLAUDE.md`.
+When in doubt, use the primary engine specialist configured in `AGENTS.md`.
 
 ## Tests
 
