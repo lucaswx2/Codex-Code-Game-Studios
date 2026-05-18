@@ -20,7 +20,7 @@ approval_policy = "on-request"
 # mode to list them. Persona prompts use the `agent-<slug>` prefix
 # (e.g. `/agent-game-designer`).
 
-# Lifecycle hooks — same event schema as Claude Code's hooks.json.
+# Lifecycle hooks — TOML arrays of tables with PascalCase event names.
 # Project-local hooks require the user to trust this project on first run.
 # Event names use PascalCase: SessionStart, PreToolUse, PostToolUse,
 # UserPromptSubmit, PermissionRequest, Stop.

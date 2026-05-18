@@ -1,8 +1,7 @@
 #!/bin/bash
 # Codex CLI session_start hook: load project context at session start.
 # Outputs context information that the model sees when a session begins.
-# Originally derived from the Claude Code SessionStart hook in this repo's
-# `.claude/` legacy tree — see docs/codex/README.md for the migration story.
+# See docs/codex/hooks.md for the wiring details.
 
 echo "=== Codex Code Game Studios — Session Context ==="
 
@@ -73,8 +72,8 @@ fi
 
 echo "==================================="
 
-# Chain detect-gaps so Codex gets the same dual-hook behavior the Claude
-# SessionStart matcher provided.
+# Chain detect-gaps so SessionStart loads both the runtime context and any
+# documentation gaps before the model starts the conversation.
 if [ -x "$(dirname "$0")/detect-gaps.sh" ]; then
     bash "$(dirname "$0")/detect-gaps.sh"
 fi

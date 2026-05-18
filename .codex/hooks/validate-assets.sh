@@ -1,7 +1,6 @@
 #!/bin/bash
 # Codex post-write validator: validates asset files after Write/Edit.
 # Checks naming conventions for files in assets/ directory.
-# Originally derived from the Claude Code PostToolUse hook in `.claude/hooks/`.
 #
 # Exit behavior:
 #   exit 0 = success or advisory warnings only (non-blocking)
