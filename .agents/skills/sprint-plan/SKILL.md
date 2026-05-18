@@ -2,7 +2,6 @@
 name: sprint-plan
 description: "Generates a new sprint plan or updates an existing one based on the current milestone, completed work, and available capacity. Pulls context from production documents and design backlogs."
 argument-hint: "[new|update|status] [--review full|lean|solo]"
-context: |
 ---
 
 
