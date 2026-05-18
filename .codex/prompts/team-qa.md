@@ -58,7 +58,7 @@ Before doing anything else, gather the full scope:
 
 ### Phase 2: QA Strategy (qa-lead)
 
-Spawn `qa-lead` via Task to review all in-scope stories and produce a QA strategy.
+Spawn `qa-lead` via the relevant /agent-<name> Codex prompt to review all in-scope stories and produce a QA strategy.
 
 Prompt the qa-lead to:
 - Read each story file
@@ -116,7 +116,7 @@ Write only after receiving approval.
 
 For each story requiring manual QA (Visual/Feel, UI, Integration without automated tests):
 
-Spawn `qa-tester` via Task for each story (run in parallel where possible), providing:
+Spawn `qa-tester` via the relevant /agent-<name> Codex prompt for each story (run in parallel where possible), providing:
 - The story file path
 - The relevant section of the QA plan for that story
 - The GDD acceptance criteria for the system being tested (if available)
@@ -156,7 +156,7 @@ options:
   - "BLOCKED — cannot test yet (reason)"
 ```
 
-After each FAIL result: use `AskUserQuestion` to collect the failure description, then spawn `qa-tester` via Task to write a formal bug report in `production/qa/bugs/`.
+After each FAIL result: use `AskUserQuestion` to collect the failure description, then spawn `qa-tester` via the relevant /agent-<name> Codex prompt to write a formal bug report in `production/qa/bugs/`.
 
 Bug report naming: `BUG-[NNN]-[short-slug].md` (increment NNN from existing bugs in the directory).
 
@@ -168,7 +168,7 @@ After collecting all results, summarize:
 
 ### Phase 6: QA Sign-Off Report
 
-Spawn `qa-lead` via Task to produce the sign-off report using all results from Phases 4–6.
+Spawn `qa-lead` via the relevant /agent-<name> Codex prompt to produce the sign-off report using all results from Phases 4–6.
 
 The sign-off report format:
 
@@ -211,7 +211,7 @@ Write only after receiving approval.
 
 ## Error Recovery Protocol
 
-If any spawned agent (via Task) returns BLOCKED, errors, or cannot complete:
+If any spawned agent (via the relevant /agent-<name> Codex prompt) returns BLOCKED, errors, or cannot complete:
 
 1. **Surface immediately**: Report "[AgentName]: BLOCKED — [reason]" to the user before continuing to dependent phases
 2. **Assess dependencies**: Check whether the blocked agent's output is required by subsequent phases. If yes, do not proceed past that dependency point without user input.

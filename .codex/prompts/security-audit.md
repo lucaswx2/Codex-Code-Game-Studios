@@ -44,7 +44,7 @@ Read `.claude/docs/technical-preferences.md` to determine:
 
 ## Phase 2: Spawn Security Engineer
 
-Spawn `security-engineer` via Task. Pass:
+Spawn `security-engineer` via the relevant /agent-<name> Codex prompt. Pass:
 - The audit scope/mode
 - Engine and language from technical preferences
 - A manifest of all source directories: `src/`, `assets/data/`, any config files

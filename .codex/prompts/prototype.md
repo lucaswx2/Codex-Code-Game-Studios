@@ -414,7 +414,7 @@ is the project's complete history of what was tried and what was learned.
 **Review mode check:**
 - `solo` → skip. Note: "CD-PLAYTEST skipped — Solo mode."
 - `lean` → skip. Note: "CD-PLAYTEST skipped — Lean mode."
-- `full` → spawn `creative-director` via Task using gate **CD-PLAYTEST** if
+- `full` → spawn `creative-director` via the relevant /agent-<name> Codex prompt using gate **CD-PLAYTEST** if
   `design/gdd/game-concept.md` exists with game pillars defined. If pillars are
   not yet defined, note: "CD-PLAYTEST skipped — game pillars not yet defined at
   concept prototype stage."

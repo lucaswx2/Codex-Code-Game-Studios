@@ -233,7 +233,7 @@ For each deviation found, categorize:
 - `lean` → skip (not a PHASE-GATE). Note: "QL-TEST-COVERAGE skipped — Lean mode." Proceed to Phase 5.
 - `full` → spawn as normal.
 
-After completing the deviation checks in Phase 4, spawn `qa-lead` via Task using gate **QL-TEST-COVERAGE** (`.claude/docs/director-gates.md`).
+After completing the deviation checks in Phase 4, spawn `qa-lead` via the relevant /agent-<name> Codex prompt using gate **QL-TEST-COVERAGE** (`.claude/docs/director-gates.md`).
 
 Pass:
 - The story file path and story type
@@ -265,7 +265,7 @@ Skip this phase for Config/Data stories (no code tests required).
   - Record the answer in the completion notes (Phase 7). All three options proceed to Phase 6.
 - `full` → spawn as normal.
 
-Spawn `lead-programmer` via Task using gate **LP-CODE-REVIEW** (`.claude/docs/director-gates.md`).
+Spawn `lead-programmer` via the relevant /agent-<name> Codex prompt using gate **LP-CODE-REVIEW** (`.claude/docs/director-gates.md`).
 
 Pass: implementation file paths, story file path, relevant GDD section, governing ADR.
 

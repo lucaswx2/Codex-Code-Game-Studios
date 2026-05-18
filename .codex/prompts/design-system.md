@@ -429,7 +429,7 @@ quote the relevant pillar text.
 - `full` → spawn as described below.
 
 **Agent delegation (MANDATORY)**: After the framing answer is given but before drafting,
-spawn `creative-director` via Task:
+spawn `creative-director` via the relevant /agent-<name> Codex prompt:
 - Provide: system name, framing answer (direct/indirect/both), game pillars, any reference games the user mentioned, the game concept summary
 - Ask: "Shape the Player Fantasy for this system. What emotion or power fantasy should it serve? What player moment should we anchor to? What tone and language fits the game's established feeling? Be specific — give me 2-3 candidate framings."
 - Collect the creative-director's framings and present them to the user alongside the draft.
@@ -463,7 +463,7 @@ This is usually the largest section. Break it into sub-sections:
 - `lean` → skip unless this is a section with HIGH implementation risk (Sections D and H only). For other sections, draft without the agent.
 - `full` → spawn as described below.
 
-**Agent delegation (MANDATORY)**: Before drafting Section C, spawn specialist agents via Task in parallel:
+**Agent delegation (MANDATORY)**: Before drafting Section C, spawn specialist agents via the relevant /agent-<name> Codex prompt in parallel:
 - Look up the system category in the routing table (Section 6 of this skill)
 - Spawn the Primary Agent AND Supporting Agent(s) listed for this category
 - Provide each agent: system name, game concept summary, pillar set, dependency GDD excerpts, the specific section being worked on
@@ -513,7 +513,7 @@ table. A formula without defined variables cannot be implemented without guesswo
 - `lean` → skip unless this is a section with HIGH implementation risk (Sections D and H only). For other sections, draft without the agent.
 - `full` → spawn as described below.
 
-**Agent delegation (MANDATORY)**: Before proposing any formulas or balance values, spawn specialist agents via Task in parallel:
+**Agent delegation (MANDATORY)**: Before proposing any formulas or balance values, spawn specialist agents via the relevant /agent-<name> Codex prompt in parallel:
 - **Always spawn `systems-designer`**: provide Core Rules from Section C, tuning goals from user, balance context from dependency GDDs. Ask them to propose formulas with variable tables and output ranges.
 - **For economy/cost systems, also spawn `economy-designer`**: provide placement costs, upgrade cost intent, and progression goals. Ask them to validate cost curves and ratios.
 - Present the specialists' proposals to the user for review via `AskUserQuestion`
@@ -550,7 +550,7 @@ design question, not a specification.
 - `lean` → skip unless this is a section with HIGH implementation risk (Sections D and H only). For other sections, draft without the agent.
 - `full` → spawn as described below.
 
-**Agent delegation (MANDATORY)**: Spawn `systems-designer` via Task before finalising edge cases. Provide: the completed Sections C and D, and ask them to identify edge cases from the formula and rule space that the main session may have missed. For narrative systems, also spawn `narrative-director`. Present their findings and ask the user which to include.
+**Agent delegation (MANDATORY)**: Spawn `systems-designer` via the relevant /agent-<name> Codex prompt before finalising edge cases. Provide: the completed Sections C and D, and ask them to identify edge cases from the formula and rule space that the main session may have missed. For narrative systems, also spawn `narrative-director`. Present their findings and ask the user which to include.
 
 **Cross-reference**: Check edge cases against dependency GDDs. If a dependency
 defines a floor, cap, or resolution rule that this system could violate, flag it.
@@ -611,7 +611,7 @@ be independently verifiable by a QA tester without reading the GDD.
 - `lean` → skip unless this is a section with HIGH implementation risk (Sections D and H only). For other sections, draft without the agent.
 - `full` → spawn as described below.
 
-**Agent delegation (MANDATORY)**: Spawn `qa-lead` via Task before finalising acceptance criteria. Provide: the completed GDD sections C, D, E, and ask them to validate that the criteria are independently testable and cover all core rules and formulas. Surface any gaps or untestable criteria to the user.
+**Agent delegation (MANDATORY)**: Spawn `qa-lead` via the relevant /agent-<name> Codex prompt before finalising acceptance criteria. Provide: the completed GDD sections C, D, E, and ask them to validate that the criteria are independently testable and cover all core rules and formulas. Surface any gaps or untestable criteria to the user.
 
 **Questions to ask**:
 - What's the minimum set of tests that prove this works?
@@ -636,7 +636,7 @@ These sections are included in the template. Visual/Audio is **REQUIRED** for vi
 - Dialogue, quests, lore
 - Level/world systems
 
-For required systems: **spawn `art-director` via Task** before drafting this section. Provide: system name, game concept, game pillars, art bible sections 1–4 if they exist. Ask them to specify: (1) VFX and visual feedback requirements for this system's events, (2) any animation or visual style constraints, (3) which art bible principles most directly apply to this system. Present their output; do NOT leave this section as `[To be designed]` for visual systems.
+For required systems: **spawn `art-director` via the relevant /agent-<name> Codex prompt** before drafting this section. Provide: system name, game concept, game pillars, art bible sections 1–4 if they exist. Ask them to specify: (1) VFX and visual feedback requirements for this system's events, (2) any animation or visual style constraints, (3) which art bible principles most directly apply to this system. Present their output; do NOT leave this section as `[To be designed]` for visual systems.
 
 For **all other system categories** (Foundation/Infrastructure, Economy, AI/pathfinding, Camera/input), offer the optional sections after the required sections:
 
@@ -688,7 +688,7 @@ the source of truth). Verify:
 - `lean` → skip (not a PHASE-GATE). Note: "CD-GDD-ALIGN skipped — Lean mode." Proceed to Step 5b.
 - `full` → spawn as normal.
 
-Before finalizing the GDD, spawn `creative-director` via Task using gate **CD-GDD-ALIGN** (`.claude/docs/director-gates.md`).
+Before finalizing the GDD, spawn `creative-director` via the relevant /agent-<name> Codex prompt using gate **CD-GDD-ALIGN** (`.claude/docs/director-gates.md`).
 
 Pass: completed GDD file path, game pillars (from `design/gdd/game-concept.md` or `design/gdd/game-pillars.md`), MDA aesthetics target.
 

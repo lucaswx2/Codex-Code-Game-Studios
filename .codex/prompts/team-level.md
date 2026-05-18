@@ -147,7 +147,7 @@ Spawn the `qa-tester` agent to:
 4. **Compile the level design document** combining all team outputs into the
    level design template format.
 
-After all subagent outputs are collected, spawn `level-designer` via Task to compile and write the final document:
+After all subagent outputs are collected, spawn `level-designer` via the relevant /agent-<name> Codex prompt to compile and write the final document:
 - Pass: all subagent outputs (verbatim), the level brief, game pillars, relevant GDD sections
 - Ask level-designer to: compile into the level design document format, then request user approval before writing ("May I write the compiled level design to design/levels/[level-name].md?")
 - The orchestrator does NOT call Write directly for the final document.
@@ -162,7 +162,7 @@ After all subagent outputs are collected, spawn `level-designer` via Task to com
 ## File Write Protocol
 
 All file writes (level design docs, narrative docs, test checklists) are delegated
-to sub-agents spawned via Task. Each sub-agent enforces the "May I write to [path]?"
+to sub-agents spawned via the relevant /agent-<name> Codex prompt. Each sub-agent enforces the "May I write to [path]?"
 protocol. This orchestrator does not write files directly.
 
 Verdict: **COMPLETE** — level design document produced and all team outputs compiled.
@@ -176,7 +176,7 @@ Verdict: **BLOCKED** — one or more agents blocked; partial report produced wit
 
 ## Error Recovery Protocol
 
-If any spawned agent (via Task) returns BLOCKED, errors, or cannot complete:
+If any spawned agent (via the relevant /agent-<name> Codex prompt) returns BLOCKED, errors, or cannot complete:
 
 1. **Surface immediately**: Report "[AgentName]: BLOCKED — [reason]" to the user before continuing to dependent phases
 2. **Assess dependencies**: Check whether the blocked agent's output is required by subsequent phases. If yes, do not proceed past that dependency point without user input.

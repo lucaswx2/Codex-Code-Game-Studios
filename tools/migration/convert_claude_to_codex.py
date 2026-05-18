@@ -62,6 +62,12 @@ def convert_skill(source: str, *, slug: str) -> str:
     )
     body = body.replace("Task agent", f"ask the user to invoke /agent-{slug}")
     body = body.replace("Task tool", f"/agent-{slug} prompt")
+    body = re.sub(
+        r"\bvia\s+Task\b",
+        "via the relevant /agent-<name> Codex prompt",
+        body,
+        flags=re.IGNORECASE,
+    )
     banner = (
         f"> Codex slash-prompt. Originally derived from "
         f"`.claude/skills/{slug}/SKILL.md`.\n\n"

@@ -40,6 +40,15 @@ class ConvertSkillTests(unittest.TestCase):
         self.assertNotIn("Task agent", result)
         self.assertIn("ask the user to invoke /agent-", result)
 
+    def test_rewrites_via_task_pattern(self):
+        src = (
+            "---\nname: x\ndescription: d\n---\n"
+            "Spawn the game-designer agent via Task to review the brief.\n"
+        )
+        result = convert_skill(src, slug="x")
+        self.assertNotIn("via Task", result)
+        self.assertIn("via the relevant /agent-<name> Codex prompt", result)
+
 
 class ConvertAgentTests(unittest.TestCase):
     def test_keeps_description_and_drops_claude_fields(self):
