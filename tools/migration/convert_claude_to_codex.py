@@ -48,6 +48,16 @@ def _render_frontmatter(fields: dict[str, str]) -> str:
 
 
 _CLAUDE_REPLACEMENTS: list[tuple[re.Pattern[str], str]] = [
+    # Path rewrites — Claude tree paths to Codex tree paths. Specific first.
+    (re.compile(r"\.claude/skills/\*/SKILL\.md"), ".codex/prompts/*.md"),
+    (re.compile(r"\.claude/skills/\[([^\]]+)\]/SKILL\.md"),
+     r".codex/prompts/[\1].md"),
+    (re.compile(r"\.claude/skills/([A-Za-z0-9_-]+)/SKILL\.md"),
+     r".codex/prompts/\1.md"),
+    (re.compile(r"\.claude/skills/"), ".codex/prompts/"),
+    (re.compile(r"\.claude/agents/"), ".codex/personas/"),
+    (re.compile(r"\.claude/rules/"), ".codex/rules/"),
+    (re.compile(r"\.claude/agent-memory/"), ".codex/persona-memory/"),
     # Brand — apply before tool patterns to avoid double rewriting.
     (re.compile(r"\bClaude Code\b"), "Codex CLI"),
     (re.compile(r"\bClaude session\b"), "Codex session"),

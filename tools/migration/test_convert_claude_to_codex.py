@@ -83,6 +83,31 @@ class ConvertSkillTests(unittest.TestCase):
         result = convert_skill(src, slug="x")
         self.assertIn("| Task | Owner | Status |", result)
 
+    def test_rewrites_skill_paths(self):
+        src = (
+            "---\nname: x\ndescription: d\n---\n"
+            "Glob `.claude/skills/*/SKILL.md`. "
+            "Read `.claude/skills/[name]/SKILL.md`. "
+            "Look up `.claude/skills/brainstorm/SKILL.md`.\n"
+        )
+        result = convert_skill(src, slug="x")
+        body_only = result.split("Claude-Code template fork", 1)[1]
+        self.assertNotIn(".claude/skills/", body_only)
+        self.assertIn(".codex/prompts/*.md", body_only)
+        self.assertIn(".codex/prompts/[name].md", body_only)
+        self.assertIn(".codex/prompts/brainstorm.md", body_only)
+
+    def test_rewrites_agent_and_rule_paths(self):
+        src = (
+            "---\nname: x\ndescription: d\n---\n"
+            "Definitions live under `.claude/agents/` and rules in `.claude/rules/`.\n"
+        )
+        result = convert_skill(src, slug="x")
+        self.assertNotIn(".claude/agents/", result)
+        self.assertNotIn(".claude/rules/", result)
+        self.assertIn(".codex/personas/", result)
+        self.assertIn(".codex/rules/", result)
+
     def test_rewrites_todowrite_family(self):
         src = (
             "---\nname: x\ndescription: d\n---\n"
