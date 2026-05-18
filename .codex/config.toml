@@ -1,8 +1,11 @@
 # OpenAI Codex CLI — project configuration
-# Docs: https://github.com/openai/codex/blob/main/codex-rs/config.md
+# Docs: https://github.com/openai/codex/blob/main/docs/config.md
+# Sample: https://developers.openai.com/codex/config-sample
 
 # Default model for this workspace. Override per-session with `codex --model`.
-model = "gpt-5-codex"
+# Valid IDs (as of Codex v0.130.0): gpt-5.5 (default frontier),
+# gpt-5.4, gpt-5.4-mini, gpt-5.3-codex (coding-optimized), gpt-5.2.
+model = "gpt-5.3-codex"
 
 # Sandbox: workspace-write lets Codex edit files inside this repo but blocks
 # changes outside it. Use `danger-full-access` only for hook-port debugging.
@@ -12,27 +15,67 @@ sandbox = "workspace-write"
 # by the sandbox. Matches the "ask before write" protocol in AGENTS.md.
 approval_policy = "on-request"
 
-# Project prompts directory. Files under .codex/prompts/<name>.md become
-# /<name> slash commands inside `codex` interactive mode.
-project_prompts_dir = ".codex/prompts"
+# Custom slash-prompts under .codex/prompts/<name>.md are auto-discovered by
+# Codex CLI by convention (no explicit config key). Type `/` in interactive
+# mode to list them. Persona prompts use the `agent-<slug>` prefix
+# (e.g. `/agent-game-designer`).
 
-# Notify: pipe Codex notifications to the legacy notify script so the
-# repo's notification UX (toasts, sounds) keeps working.
-notify = [".codex/hooks/notify.sh"]
+# Lifecycle hooks — same event schema as Claude Code's hooks.json.
+# Project-local hooks require the user to trust this project on first run.
+# Event names use PascalCase: SessionStart, PreToolUse, PostToolUse,
+# UserPromptSubmit, PermissionRequest, Stop.
 
-# Lifecycle hooks. Codex CLI invokes these scripts at the matching event;
-# unsupported events from the Claude version are documented in
-# docs/codex/hook-mapping.md.
 [hooks]
-session_start = ".codex/hooks/session-start.sh"
-pre_commit    = ".codex/hooks/validate-commit.sh"
-pre_push      = ".codex/hooks/validate-push.sh"
 
-# MCP servers. Mirror the ones the Claude session expects so /loop, context7,
-# etc. keep working. Token-bearing servers should be configured in the user's
-# ~/.codex/config.toml, not committed here.
+# Print branch / sprint / milestone / bug-count context at session start,
+# and chain into detect-gaps.sh to spot missing documentation.
+[[hooks.SessionStart]]
+
+[[hooks.SessionStart.hooks]]
+type = "command"
+command = "bash .codex/hooks/session-start.sh"
+timeout = 10
+
+# Validate git commit / push commands before they execute. The matcher
+# fires for any Bash tool invocation; the scripts internally short-circuit
+# when the command is not a git commit/push.
+[[hooks.PreToolUse]]
+matcher = "^Bash$"
+
+[[hooks.PreToolUse.hooks]]
+type = "command"
+command = "bash .codex/hooks/validate-commit.sh"
+timeout = 15
+
+[[hooks.PreToolUse.hooks]]
+type = "command"
+command = "bash .codex/hooks/validate-push.sh"
+timeout = 10
+
+# Asset-pipeline + skill-change validators after any Write/Edit. Both
+# scripts exit 0 silently on non-matching paths, so the matcher is broad.
+[[hooks.PostToolUse]]
+matcher = "^(Write|Edit)$"
+
+[[hooks.PostToolUse.hooks]]
+type = "command"
+command = "bash .codex/hooks/validate-assets.sh"
+timeout = 10
+
+[[hooks.PostToolUse.hooks]]
+type = "command"
+command = "bash .codex/hooks/validate-skill-change.sh"
+timeout = 5
+
+# MCP servers. Token-bearing servers (Datadog, Sentry, etc) belong in
+# user-level ~/.codex/config.toml, not committed here.
 [mcp_servers]
-# Example shape — uncomment and fill in per machine:
+# Example shape — uncomment per machine:
 # [mcp_servers.context7]
 # command = "npx"
 # args = ["-y", "@upstash/context7-mcp@latest"]
+
+# NOTE: `notify` is user-level only (see Codex docs) and uses argv-array
+# format (e.g. `notify = ["notify-send", "Codex"]`). The bundled
+# .codex/hooks/notify.sh is preserved for users who want to wire it in
+# their own ~/.codex/config.toml.
