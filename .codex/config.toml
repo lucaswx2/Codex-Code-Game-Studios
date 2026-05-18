@@ -1,0 +1,38 @@
+# OpenAI Codex CLI — project configuration
+# Docs: https://github.com/openai/codex/blob/main/codex-rs/config.md
+
+# Default model for this workspace. Override per-session with `codex --model`.
+model = "gpt-5-codex"
+
+# Sandbox: workspace-write lets Codex edit files inside this repo but blocks
+# changes outside it. Use `danger-full-access` only for hook-port debugging.
+sandbox = "workspace-write"
+
+# Approval: on-request means Codex asks before running commands flagged risky
+# by the sandbox. Matches the "ask before write" protocol in CLAUDE.md.
+approval_policy = "on-request"
+
+# Project prompts directory. Files under .codex/prompts/<name>.md become
+# /<name> slash commands inside `codex` interactive mode.
+project_prompts_dir = ".codex/prompts"
+
+# Notify: pipe Codex notifications to the legacy notify script so the
+# repo's notification UX (toasts, sounds) keeps working.
+notify = [".codex/hooks/notify.sh"]
+
+# Lifecycle hooks. Codex CLI invokes these scripts at the matching event;
+# unsupported events from the Claude version are documented in
+# docs/codex/hook-mapping.md.
+[hooks]
+session_start = ".codex/hooks/session-start.sh"
+pre_commit    = ".codex/hooks/validate-commit.sh"
+pre_push      = ".codex/hooks/validate-push.sh"
+
+# MCP servers. Mirror the ones the Claude session expects so /loop, context7,
+# etc. keep working. Token-bearing servers should be configured in the user's
+# ~/.codex/config.toml, not committed here.
+[mcp_servers]
+# Example shape — uncomment and fill in per machine:
+# [mcp_servers.context7]
+# command = "npx"
+# args = ["-y", "@upstash/context7-mcp@latest"]
