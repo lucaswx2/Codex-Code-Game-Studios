@@ -1,9 +1,10 @@
 # Contributing to Codex Code Game Studios
 
-CCGS is a coordination framework for indie game development. It started as
-Claude Code Game Studios (Donchitos); this fork runs primarily under OpenAI
-Codex CLI — see [`docs/codex/README.md`](docs/codex/README.md) for the
-migration story. Both runtimes are still supported.
+CCGS is a coordination framework for indie game development running on
+OpenAI Codex CLI. See [`docs/codex/README.md`](docs/codex/README.md) for the
+operator's guide. For the original Claude Code version, see the upstream
+[Donchitos repo](https://github.com/Donchitos/Claude-Code-Game-Studios) —
+this fork does not retain Claude Code retrocompatibility.
 Contributions are welcome — bug fixes, new skills that fill a real gap, agent
 improvements, and hook fixes. PRs that don't fit the framework's direction will
 be closed without lengthy explanation.
@@ -28,8 +29,8 @@ merged here — keep those in your own repo.
 These are the things that will get your PR rejected if you miss them.
 
 **Skill files**
-- Skills live in `.claude/skills/<name>/SKILL.md` — the subdirectory format is
-  required. Flat `.md` files are silently ignored by Claude Code.
+- Skills live in `.codex/prompts/<name>.md` — the flat prompt-file format is
+  required. Subdirectory layouts are not picked up by Codex CLI.
 - SKILL.md must include YAML frontmatter: `name`, `description`,
   `argument-hint`, `allowed-tools`, and `model`
 - Model tier: `haiku` for read-only status checks, `opus` for multi-document

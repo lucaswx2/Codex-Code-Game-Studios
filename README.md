@@ -12,18 +12,13 @@
   <a href=".codex/personas"><img src="https://img.shields.io/badge/personas-49-blueviolet" alt="49 Personas"></a>
   <a href=".codex/prompts"><img src="https://img.shields.io/badge/prompts-73-green" alt="73 Prompts"></a>
   <a href=".codex/hooks"><img src="https://img.shields.io/badge/hooks-7-orange" alt="7 Hooks"></a>
-  <a href=".claude/rules"><img src="https://img.shields.io/badge/rules-11-red" alt="11 Rules"></a>
+  <a href=".codex/rules"><img src="https://img.shields.io/badge/rules-11-red" alt="11 Rules"></a>
   <a href="https://github.com/openai/codex"><img src="https://img.shields.io/badge/built%20for-OpenAI%20Codex%20CLI-10a37f?logo=openai&logoColor=white" alt="Built for Codex"></a>
-  <a href="https://docs.anthropic.com/en/docs/claude-code"><img src="https://img.shields.io/badge/legacy-Claude%20Code-f5f5f5?logo=anthropic" alt="Legacy: Claude Code"></a>
 </p>
 
 ---
 
-> **🍴 Fork notice — how this repo came to be:**
->
-> This repository is a **vibe-coded fork** of [Claude Code Game Studios](https://github.com/Donchitos/Claude-Code-Game-Studios) (original by Donchitos). The conversion from Claude Code → OpenAI Codex CLI was performed by Claude itself in a single coordinated migration session, following the plan at [`docs/superpowers/plans/2026-05-17-codex-migration.md`](docs/superpowers/plans/2026-05-17-codex-migration.md).
->
-> Everything under `.codex/` (config, 73 prompts, 49 personas, 7 hooks) was mechanically derived from the original `.claude/` tree via the converter at [`tools/migration/convert_claude_to_codex.py`](tools/migration/convert_claude_to_codex.py). The legacy `.claude/` tree is preserved verbatim for contributors who prefer Claude Code; Codex CLI is the primary supported runtime.
+> **About this project:** Originally derived from [Donchitos's Claude Code Game Studios](https://github.com/Donchitos/Claude-Code-Game-Studios). This is now a standalone OpenAI Codex CLI project — **no Claude Code retrocompatibility**. If you want the Claude Code version, use the upstream repo directly.
 
 ---
 
@@ -33,7 +28,7 @@ Building a game solo with AI is powerful — but a single chat session has no st
 
 **Codex Code Game Studios** solves this by giving your AI session the structure of a real studio. Instead of one general-purpose assistant, you get 49 specialized personas organized into a studio hierarchy — directors who guard the vision, department leads who own their domains, and specialists who do the hands-on work. Each persona has defined responsibilities, escalation paths, and quality gates.
 
-The result: you still make every decision, but now you have a team that asks the right questions, catches mistakes early, and keeps your project organized from first brainstorm to launch. Codex CLI is the primary supported runtime; Claude Code is still wired up for contributors who prefer it.
+The result: you still make every decision, but now you have a team that asks the right questions, catches mistakes early, and keeps your project organized from first brainstorm to launch. Codex CLI is the supported runtime.
 
 ---
 
@@ -61,7 +56,7 @@ The result: you still make every decision, but now you have a team that asks the
 |----------|-------|-------------|
 | **Personas** | 49 | Specialized agent prompts across design, programming, art, audio, narrative, QA, and production. Invoke with `/agent-<slug>`. |
 | **Prompts** | 73 | Slash-prompts for every workflow phase (`/start`, `/design-system`, `/create-epics`, `/create-stories`, `/dev-story`, `/story-done`, etc.) |
-| **Hooks** | 7 | Automated validation on session start, commits, pushes, asset changes, plus manual `/validate-*` prompts. See `docs/codex/hook-mapping.md`. |
+| **Hooks** | 7 | Automated validation on session start, commits, pushes, asset changes, plus manual `/validate-*` prompts. See `docs/codex/hooks.md`. |
 | **Rules** | 11 | Path-scoped coding standards enforced when editing gameplay, engine, AI, UI, network code, and more |
 | **Templates** | 41 | Document templates for GDDs, UX specs, ADRs, sprint plans, HUD design, accessibility, and more |
 
@@ -154,41 +149,35 @@ codex
 Codex reads `AGENTS.md` and `.codex/config.toml` on startup. See
 [`docs/codex/README.md`](docs/codex/README.md) for the full operator's guide.
 
-### Claude Code (legacy)
-
-The original `.claude/` tree still works:
-
-```bash
-claude
-```
-
-See [`CLAUDE.md`](CLAUDE.md) for the legacy entry point.
-
 ### Prerequisites
 
 - [Git](https://git-scm.com/)
-- [Claude Code](https://docs.anthropic.com/en/docs/claude-code) (`npm install -g @anthropic-ai/claude-code`)
+- [Node.js](https://nodejs.org/) (for installing the Codex CLI via npm) and an `OPENAI_API_KEY`
 - **Recommended**: [jq](https://jqlang.github.io/jq/) (for hook validation) and Python 3 (for JSON validation)
 
 All hooks fail gracefully if optional tools are missing — nothing breaks, you just lose validation.
 
 ### Setup
 
-1. **Clone or use as template**:
+1. **Clone**:
    ```bash
-   git clone https://github.com/Donchitos/Claude-Code-Game-Studios.git my-game
+   git clone <this-fork-url> my-game
    cd my-game
    ```
 
-2. **Open Claude Code** and start a session:
+2. **Open Codex CLI** in the project directory:
    ```bash
-   claude
+   codex
    ```
 
-3. **Run `/start`** — the system asks where you are (no idea, vague concept,
-   clear design, existing work) and guides you to the right workflow. No assumptions.
+   Codex auto-loads `AGENTS.md` and the hook wiring in `.codex/config.toml`.
+   On first run, approve the 5 lifecycle hooks via `/hooks`.
 
-   Or jump directly to a specific skill if you already know what you need:
+3. **Run `/start`** — the onboarding prompt asks where you are (no idea,
+   vague concept, clear design, existing work) and routes you to the right
+   workflow.
+
+   Or jump directly to a specific prompt if you already know what you need:
    - `/brainstorm` — explore game ideas from scratch
    - `/setup-engine godot 4.6` — configure your engine if you already know
    - `/project-stage-detect` — analyze an existing project
@@ -202,21 +191,20 @@ versions, and which files are safe to overwrite vs. which need a manual merge.
 ## Project Structure
 
 ```
-CLAUDE.md                           # Master configuration
-.claude/
-  settings.json                     # Hooks, permissions, safety rules
-  agents/                           # 49 agent definitions (markdown + YAML frontmatter)
-  skills/                           # 73 slash commands (subdirectory per skill)
-  hooks/                            # 12 hook scripts (bash, cross-platform)
+AGENTS.md                           # Project instructions (Codex auto-loads)
+.codex/
+  config.toml                       # Codex CLI configuration (model, sandbox, hooks)
+  prompts/                          # 73 workflow slash-prompts + 49 /agent-<slug> wrappers
+  personas/                         # 49 persona bodies referenced by agent-* wrappers
+  hooks/                            # 7 lifecycle hook scripts (bash)
   rules/                            # 11 path-scoped coding standards
-  statusline.sh                     # Status line script (context%, model, stage, epic breadcrumb)
-  docs/
-    workflow-catalog.yaml           # 7-phase pipeline definition (read by /help)
-    templates/                      # 41 document templates
-src/                                # Game source code
+  persona-memory/                   # Long-lived per-persona notes
+src/                                # Game source code (+ src/AGENTS.md)
 assets/                             # Art, audio, VFX, shaders, data files
-design/                             # GDDs, narrative docs, level designs
-docs/                               # Technical documentation and ADRs
+design/                             # GDDs, narrative docs, level designs (+ design/AGENTS.md)
+docs/                               # Technical documentation and ADRs (+ docs/AGENTS.md)
+  codex/                            # Codex operator guide, hook reference, migrated refs
+    refs/                           # 61 reference docs + 38 templates
 tests/                              # Test suites (unit, integration, performance, playtest)
 tools/                              # Build and pipeline tools
 prototypes/                         # Throwaway prototypes (isolated from src/)
@@ -249,26 +237,21 @@ You stay in control. The agents provide structure and expertise, not autonomy.
 
 ### Automated Safety
 
-**Hooks** run automatically on every session:
+**Hooks** run automatically on every Codex session (approve via `/hooks` on first run):
 
 | Hook | Trigger | What It Does |
 |------|---------|--------------|
-| `validate-commit.sh` | PreToolUse (Bash) | Checks for hardcoded values, TODO format, JSON validity, design doc sections — exits early if the command is not `git commit` |
-| `validate-push.sh` | PreToolUse (Bash) | Warns on pushes to protected branches — exits early if the command is not `git push` |
-| `validate-assets.sh` | PostToolUse (Write/Edit) | Validates naming conventions and JSON structure — exits early if the file is not in `assets/` |
-| `session-start.sh` | Session open | Shows current branch and recent commits for orientation |
-| `detect-gaps.sh` | Session open | Detects fresh projects (suggests `/start`) and missing design docs when code or prototypes exist |
-| `pre-compact.sh` | Before compaction | Preserves session progress notes |
-| `post-compact.sh` | After compaction | Reminds Claude to restore session state from `active.md` |
-| `notify.sh` | Notification event | Shows Windows toast notification via PowerShell |
-| `session-stop.sh` | Session close | Archives `active.md` to session log and records git activity |
-| `log-agent.sh` | Agent spawned | Audit trail start — logs subagent invocation |
-| `log-agent-stop.sh` | Agent stops | Audit trail stop — completes subagent record |
-| `validate-skill-change.sh` | PostToolUse (Write/Edit) | Advises running `/skill-test` after any `.claude/skills/` change |
+| `session-start.sh` | `SessionStart` | Shows current branch, recent commits, sprint/milestone context; chains `detect-gaps.sh` to surface missing docs |
+| `detect-gaps.sh` | chained from SessionStart | Detects fresh projects (suggests `/start`) and missing design docs when code or prototypes exist |
+| `validate-commit.sh` | `PreToolUse` (`^Bash$`) | Warns on non-Conventional-Commit messages; blocks `.env` files |
+| `validate-push.sh` | `PreToolUse` (`^Bash$`) | Blocks force-push to `main`/`master` |
+| `validate-assets.sh` | `PostToolUse` (`^(Write\|Edit)$`) | Validates naming conventions on files written under `assets/` |
+| `validate-skill-change.sh` | `PostToolUse` (`^(Write\|Edit)$`) | Advises running `/skill-test` after edits to `.codex/prompts/` |
+| `notify.sh` | user-level `notify` | Windows toast notifier; wire it in `~/.codex/config.toml` if you want it |
 
-> **Note**: `validate-commit.sh`, `validate-assets.sh`, and `validate-skill-change.sh` fire on every Bash/Write tool call and exit immediately (exit 0) when the command or file path is not relevant. This is normal hook behavior — not a performance concern.
+> **Note**: PreToolUse hooks fire on every Bash invocation and exit 0 silently when the command is not relevant. This is normal hook behavior — not a performance concern.
 
-**Permission rules** in `settings.json` auto-allow safe operations (git status, test runs) and block dangerous ones (force push, `rm -rf`, reading `.env` files).
+**Sandbox + approval policy** in `.codex/config.toml` keep risky commands behind explicit user approval. See [`docs/codex/hooks.md`](docs/codex/hooks.md) for the full hook reference.
 
 ### Path-Scoped Rules
 
@@ -320,7 +303,7 @@ Primary development and testing on **Windows 10** with Git Bash. All hooks use P
 
 ## Supporting This Project
 
-Codex Code Game Studios (fork of Claude Code Game Studios) is free and open source. If it saves you time or helps you ship your game, consider supporting continued development:
+Codex Code Game Studios is free and open source. If it saves you time or helps you ship your game, consider supporting continued development:
 
 <p>
   <a href="https://www.buymeacoffee.com/donchitos3"><img src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black" alt="Buy Me a Coffee"></a>
@@ -331,11 +314,11 @@ Codex Code Game Studios (fork of Claude Code Game Studios) is free and open sour
 - **[Buy Me a Coffee](https://www.buymeacoffee.com/donchitos3)** — one-time support
 - **[GitHub Sponsors](https://github.com/sponsors/Donchitos)** — recurring support through GitHub
 
-Sponsorships help fund time spent maintaining prompts, adding new personas, keeping up with Codex CLI / Claude Code and engine API changes, and responding to community issues.
+Sponsorships help fund time spent maintaining prompts, adding new personas, keeping up with Codex CLI and engine API changes, and responding to community issues.
 
 ---
 
-*Built for OpenAI Codex CLI (forked from Claude Code Game Studios by Donchitos). Maintained and extended — contributions welcome via [GitHub Discussions](https://github.com/Donchitos/Claude-Code-Game-Studios/discussions).*
+*Built for OpenAI Codex CLI. Originally derived from Claude Code Game Studios by Donchitos. Contributions welcome via GitHub issues and PRs on this fork.*
 
 ## License
 

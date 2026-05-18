@@ -1,17 +1,8 @@
 # Codex Operator's Guide
 
-> **🍴 Fork notice:** This repository is a **vibe-coded fork** of
-> [Claude Code Game Studios](https://github.com/Donchitos/Claude-Code-Game-Studios)
-> (original by Donchitos). The conversion from Claude Code → OpenAI Codex CLI
-> was performed by Claude itself in a single migration session — see
-> [`../superpowers/plans/2026-05-17-codex-migration.md`](../superpowers/plans/2026-05-17-codex-migration.md).
-> Everything under `.codex/` was mechanically derived from the original
-> `.claude/` tree via [`../../tools/migration/convert_claude_to_codex.py`](../../tools/migration/convert_claude_to_codex.py).
-
-This repository was originally built for Claude Code and is now primarily
-supported under [OpenAI Codex CLI](https://github.com/openai/codex). Codex is
-the recommended path going forward; the legacy `.claude/` tree still works for
-contributors who prefer Claude Code.
+This repository runs on [OpenAI Codex CLI](https://github.com/openai/codex).
+For the Claude Code version, see the upstream [Donchitos repo](https://github.com/Donchitos/Claude-Code-Game-Studios)
+— this fork does not retain Claude Code retrocompatibility.
 
 ## Install
 
@@ -67,17 +58,14 @@ the scripts; symlinks may not work without developer mode.
   you want domain expertise (e.g. `/agent-game-designer` for mechanics design,
   `/agent-godot-shader-specialist` for GLSL questions).
 
-## Hook mapping
+## Hooks
 
-See [hook-mapping.md](hook-mapping.md) for the full event-by-event mapping
-from the Claude version to the Codex version.
+See [hooks.md](hooks.md) for the lifecycle-hook reference and TOML syntax.
 
 ## When something is missing
 
 If a workflow that worked under Claude Code does not work under Codex:
 
-1. Check `hook-mapping.md` — the event may not be supported.
-2. Check `.codex/prompts/<slug>.md` — the prompt may need a refresh after
-   editing `.claude/skills/<slug>/SKILL.md`. Re-run
-   `python tools/migration/convert_claude_to_codex.py skills .claude/skills .codex/prompts`.
-3. File an issue tagged `codex-parity`.
+1. Check `hooks.md` — the event may not be supported.
+2. Edit the prompt directly at `.codex/prompts/<slug>.md`.
+3. File an issue.

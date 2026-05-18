@@ -1,19 +1,6 @@
 # Codex Code Game Studios — Agent Instructions
 
-> This file is the canonical entry point for OpenAI Codex CLI. The legacy
-> `CLAUDE.md` points here too, so contributors using either tool see the
-> same instructions.
-
-> **🍴 Fork notice:** This repository is a **vibe-coded fork** of
-> [Claude Code Game Studios](https://github.com/Donchitos/Claude-Code-Game-Studios)
-> (original by Donchitos). The conversion from Claude Code → OpenAI Codex CLI
-> was performed by Claude itself in a single coordinated migration session —
-> see [`docs/superpowers/plans/2026-05-17-codex-migration.md`](docs/superpowers/plans/2026-05-17-codex-migration.md).
-> Everything under `.codex/` was mechanically derived from `.claude/` via the
-> converter at
-> [`tools/migration/convert_claude_to_codex.py`](tools/migration/convert_claude_to_codex.py).
-> The legacy `.claude/` tree is preserved for contributors who prefer Claude
-> Code; Codex CLI is the primary supported runtime.
+> This file is the canonical entry point for OpenAI Codex CLI.
 
 Indie game development managed through 49 coordinated AI personas and 73
 custom slash-prompts. Each persona owns a specific domain, enforcing
@@ -105,3 +92,14 @@ durable observations as they accrue.
   `~/.codex/config.toml`, not this file.
 - See [docs/codex/README.md](docs/codex/README.md) for setup and hook
   semantics.
+
+---
+
+## Attribution
+
+This repository originated as a fork of
+[Donchitos's Claude Code Game Studios](https://github.com/Donchitos/Claude-Code-Game-Studios)
+and is now a standalone Codex CLI project. Conversion was performed in a
+single migration session, recorded at
+[`docs/superpowers/plans/2026-05-17-codex-migration.md`](docs/superpowers/plans/2026-05-17-codex-migration.md).
+For the Claude Code version, use the upstream repo directly.
