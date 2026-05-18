@@ -1,10 +1,10 @@
-# Claude Code Game Studios -- Complete Workflow Guide
+# Codex CLI Game Studios -- Complete Workflow Guide
 
 > **How to go from zero to a shipped game using the Agent Architecture.**
 >
 > This guide walks you through every phase of game development using the
 > 49-agent system, 73 slash commands, and 12 automated hooks. It assumes you
-> have Claude Code installed and are working from the project root.
+> have Codex CLI installed and are working from the project root.
 >
 > The pipeline has 7 phases. Each phase has a formal gate (`/gate-check`)
 > that must pass before you advance. The authoritative phase sequence is
@@ -35,7 +35,7 @@
 
 Before you start, make sure you have:
 
-- **Claude Code** installed and working
+- **Codex CLI** installed and working
 - **Git** with Git Bash (Windows) or standard terminal (Mac/Linux)
 - **jq** (optional but recommended -- hooks fall back to `grep` if missing)
 - **Python 3** (optional -- some hooks use it for JSON validation)
@@ -66,11 +66,11 @@ This guided onboarding asks where you are and routes you to the right phase:
 
 ### Step 3: Verify Hooks Are Working
 
-Start a new Claude Code session. You should see output from the
+Start a new Codex CLI session. You should see output from the
 `session-start.sh` hook:
 
 ```
-=== Claude Code Game Studios -- Session Context ===
+=== Codex CLI Game Studios -- Session Context ===
 Branch: main
 Recent commits:
   abc1234 Initial commit
@@ -1195,9 +1195,9 @@ Every agent interaction follows this pattern:
 See `docs/COLLABORATIVE-DESIGN-PRINCIPLE.md` for the full protocol with
 examples.
 
-### The AskUserQuestion Tool
+### The an inline user question Tool
 
-Agents use the `AskUserQuestion` tool for structured option presentation.
+Agents use the an inline question to the user tool for structured option presentation.
 The pattern is Explain then Capture: full analysis in conversation text first,
 then a clean UI picker for the decision. Use it for design choices,
 architecture decisions, and strategic questions. Do not use it for open-ended
