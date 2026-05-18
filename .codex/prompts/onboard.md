@@ -10,7 +10,7 @@ argument-hint: "[role|area]"
 
 Read CLAUDE.md for project overview and standards.
 
-Read the relevant agent definition from `.claude/agents/` if a specific role is specified.
+Read the relevant agent definition from `.codex/personas/` if a specific role is specified.
 
 ---
 
