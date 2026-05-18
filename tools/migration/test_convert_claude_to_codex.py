@@ -97,6 +97,20 @@ class ConvertSkillTests(unittest.TestCase):
         self.assertIn(".codex/prompts/[name].md", body_only)
         self.assertIn(".codex/prompts/brainstorm.md", body_only)
 
+    def test_rewrites_docs_path_and_claude_md_filename(self):
+        src = (
+            "---\nname: x\ndescription: d\n---\n"
+            "Read `.claude/docs/director-gates.md` then `.claude/docs/templates/foo.md`. "
+            "Refer to CLAUDE.md for project standards.\n"
+        )
+        result = convert_skill(src, slug="x")
+        body_only = result.split("Claude-Code template fork", 1)[1]
+        self.assertNotIn(".claude/docs/", body_only)
+        self.assertNotIn("CLAUDE.md", body_only)
+        self.assertIn("docs/codex/refs/director-gates.md", body_only)
+        self.assertIn("docs/codex/refs/templates/foo.md", body_only)
+        self.assertIn("AGENTS.md", body_only)
+
     def test_rewrites_agent_and_rule_paths(self):
         src = (
             "---\nname: x\ndescription: d\n---\n"

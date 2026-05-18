@@ -58,6 +58,12 @@ _CLAUDE_REPLACEMENTS: list[tuple[re.Pattern[str], str]] = [
     (re.compile(r"\.claude/agents/"), ".codex/personas/"),
     (re.compile(r"\.claude/rules/"), ".codex/rules/"),
     (re.compile(r"\.claude/agent-memory/"), ".codex/persona-memory/"),
+    (re.compile(r"\.claude/docs/"), "docs/codex/refs/"),
+    # File-name rewrites — CLAUDE.md → AGENTS.md (Codex's canonical entry).
+    (re.compile(r"\bCLAUDE\.md\b"), "AGENTS.md"),
+    # Compound brand forms — "Claude-evaluated", "Claude-specific", etc.
+    (re.compile(r"\bClaude-evaluated\b"), "Codex-evaluated"),
+    (re.compile(r"\bClaude-specific\b"), "Codex-specific"),
     # Brand — apply before tool patterns to avoid double rewriting.
     (re.compile(r"\bClaude Code\b"), "Codex CLI"),
     (re.compile(r"\bClaude session\b"), "Codex session"),
@@ -99,7 +105,7 @@ def _rewrite_claude_references(text: str) -> str:
 def convert_skill(source: str, *, slug: str) -> str:
     fields, body = _split_frontmatter(source)
     kept = {
-        key: value
+        key: _rewrite_claude_references(value)
         for key, value in fields.items()
         if key not in CLAUDE_ONLY_SKILL_FIELDS
     }
@@ -115,7 +121,7 @@ def convert_skill(source: str, *, slug: str) -> str:
 def convert_agent(source: str, *, slug: str) -> str:
     fields, body = _split_frontmatter(source)
     kept = {
-        key: value
+        key: _rewrite_claude_references(value)
         for key, value in fields.items()
         if key not in CLAUDE_ONLY_AGENT_FIELDS
     }
