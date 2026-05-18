@@ -1,8 +1,16 @@
 # Codex Operator's Guide
 
-This repository was originally built for Claude Code and is now also supported
-under [OpenAI Codex CLI](https://github.com/openai/codex). Codex is the
-recommended path going forward; the legacy `.claude/` tree still works for
+> **🍴 Fork notice:** This repository is a **vibe-coded fork** of
+> [Claude Code Game Studios](https://github.com/Donchitos/Claude-Code-Game-Studios)
+> (original by Donchitos). The conversion from Claude Code → OpenAI Codex CLI
+> was performed by Claude itself in a single migration session — see
+> [`../superpowers/plans/2026-05-17-codex-migration.md`](../superpowers/plans/2026-05-17-codex-migration.md).
+> Everything under `.codex/` was mechanically derived from the original
+> `.claude/` tree via [`../../tools/migration/convert_claude_to_codex.py`](../../tools/migration/convert_claude_to_codex.py).
+
+This repository was originally built for Claude Code and is now primarily
+supported under [OpenAI Codex CLI](https://github.com/openai/codex). Codex is
+the recommended path going forward; the legacy `.claude/` tree still works for
 contributors who prefer Claude Code.
 
 ## Install

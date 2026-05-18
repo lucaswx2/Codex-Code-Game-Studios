@@ -1,6 +1,9 @@
-# Contributing to Claude Code Game Studios
+# Contributing to Codex Code Game Studios
 
-CCGS is a coordination framework for indie game development using Claude Code.
+CCGS is a coordination framework for indie game development. It started as
+Claude Code Game Studios (Donchitos); this fork runs primarily under OpenAI
+Codex CLI — see [`docs/codex/README.md`](docs/codex/README.md) for the
+migration story. Both runtimes are still supported.
 Contributions are welcome — bug fixes, new skills that fill a real gap, agent
 improvements, and hook fixes. PRs that don't fit the framework's direction will
 be closed without lengthy explanation.

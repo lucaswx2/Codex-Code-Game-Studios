@@ -4,6 +4,17 @@
 > `CLAUDE.md` points here too, so contributors using either tool see the
 > same instructions.
 
+> **🍴 Fork notice:** This repository is a **vibe-coded fork** of
+> [Claude Code Game Studios](https://github.com/Donchitos/Claude-Code-Game-Studios)
+> (original by Donchitos). The conversion from Claude Code → OpenAI Codex CLI
+> was performed by Claude itself in a single coordinated migration session —
+> see [`docs/superpowers/plans/2026-05-17-codex-migration.md`](docs/superpowers/plans/2026-05-17-codex-migration.md).
+> Everything under `.codex/` was mechanically derived from `.claude/` via the
+> converter at
+> [`tools/migration/convert_claude_to_codex.py`](tools/migration/convert_claude_to_codex.py).
+> The legacy `.claude/` tree is preserved for contributors who prefer Claude
+> Code; Codex CLI is the primary supported runtime.
+
 Indie game development managed through 49 coordinated AI personas and 73
 custom slash-prompts. Each persona owns a specific domain, enforcing
 separation of concerns and quality.
@@ -21,7 +32,7 @@ separation of concerns and quality.
 
 ## Project Structure
 
-See [.claude/docs/directory-structure.md](.claude/docs/directory-structure.md).
+See [docs/codex/refs/directory-structure.md](docs/codex/refs/directory-structure.md).
 
 ## Engine Version Reference
 
@@ -29,11 +40,11 @@ See [docs/engine-reference/godot/VERSION.md](docs/engine-reference/godot/VERSION
 
 ## Technical Preferences
 
-See [.claude/docs/technical-preferences.md](.claude/docs/technical-preferences.md).
+See [docs/codex/refs/technical-preferences.md](docs/codex/refs/technical-preferences.md).
 
 ## Coordination Rules
 
-See [.claude/docs/coordination-rules.md](.claude/docs/coordination-rules.md).
+See [docs/codex/refs/coordination-rules.md](docs/codex/refs/coordination-rules.md).
 
 ## Collaboration Protocol
 
@@ -45,7 +56,7 @@ Every task follows: **Question -> Options -> Decision -> Draft -> Approval**
 - Multi-file changes require explicit approval for the full changeset.
 - No commits without user instruction.
 
-See [docs/COLLABORATIVE-DESIGN-PRINCIPLE.md](docs/COLLABORATIVE-DESIGN-PRINCIPLE.md)
+See [docs/codex/refs/COLLABORATIVE-DESIGN-PRINCIPLE.md](docs/codex/refs/COLLABORATIVE-DESIGN-PRINCIPLE.md)
 for full protocol and examples.
 
 > **First session?** If the project has no engine configured and no game
@@ -53,11 +64,11 @@ for full protocol and examples.
 
 ## Coding Standards
 
-See [.claude/docs/coding-standards.md](.claude/docs/coding-standards.md).
+See [docs/codex/refs/coding-standards.md](docs/codex/refs/coding-standards.md).
 
 ## Context Management
 
-See [.claude/docs/context-management.md](.claude/docs/context-management.md).
+See [docs/codex/refs/context-management.md](docs/codex/refs/context-management.md).
 
 ## Codex-Specific Notes
 

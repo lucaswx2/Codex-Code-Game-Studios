@@ -19,6 +19,14 @@
 
 ---
 
+> **🍴 Fork notice — how this repo came to be:**
+>
+> This repository is a **vibe-coded fork** of [Claude Code Game Studios](https://github.com/Donchitos/Claude-Code-Game-Studios) (original by Donchitos). The conversion from Claude Code → OpenAI Codex CLI was performed by Claude itself in a single coordinated migration session, following the plan at [`docs/superpowers/plans/2026-05-17-codex-migration.md`](docs/superpowers/plans/2026-05-17-codex-migration.md).
+>
+> Everything under `.codex/` (config, 73 prompts, 49 personas, 7 hooks) was mechanically derived from the original `.claude/` tree via the converter at [`tools/migration/convert_claude_to_codex.py`](tools/migration/convert_claude_to_codex.py). The legacy `.claude/` tree is preserved verbatim for contributors who prefer Claude Code; Codex CLI is the primary supported runtime.
+
+---
+
 ## Why This Exists
 
 Building a game solo with AI is powerful — but a single chat session has no structure. No one stops you from hardcoding magic numbers, skipping design docs, or writing spaghetti code. There's no QA pass, no design review, no one asking "does this actually fit the game's vision?"
@@ -312,7 +320,7 @@ Primary development and testing on **Windows 10** with Git Bash. All hooks use P
 
 ## Supporting This Project
 
-Claude Code Game Studios is free and open source. If it saves you time or helps you ship your game, consider supporting continued development:
+Codex Code Game Studios (fork of Claude Code Game Studios) is free and open source. If it saves you time or helps you ship your game, consider supporting continued development:
 
 <p>
   <a href="https://www.buymeacoffee.com/donchitos3"><img src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black" alt="Buy Me a Coffee"></a>
@@ -323,11 +331,11 @@ Claude Code Game Studios is free and open source. If it saves you time or helps 
 - **[Buy Me a Coffee](https://www.buymeacoffee.com/donchitos3)** — one-time support
 - **[GitHub Sponsors](https://github.com/sponsors/Donchitos)** — recurring support through GitHub
 
-Sponsorships help fund time spent maintaining skills, adding new agents, keeping up with Claude Code and engine API changes, and responding to community issues.
+Sponsorships help fund time spent maintaining prompts, adding new personas, keeping up with Codex CLI / Claude Code and engine API changes, and responding to community issues.
 
 ---
 
-*Built for Claude Code. Maintained and extended — contributions welcome via [GitHub Discussions](https://github.com/Donchitos/Claude-Code-Game-Studios/discussions).*
+*Built for OpenAI Codex CLI (forked from Claude Code Game Studios by Donchitos). Maintained and extended — contributions welcome via [GitHub Discussions](https://github.com/Donchitos/Claude-Code-Game-Studios/discussions).*
 
 ## License
 
