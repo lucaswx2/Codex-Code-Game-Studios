@@ -142,3 +142,8 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 *.lnk
+
+# Codex CLI runtime artifacts
+.codex/cache/
+.codex/sessions/
+.codex/local.toml
