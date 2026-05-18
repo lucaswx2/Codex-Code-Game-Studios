@@ -3,7 +3,6 @@ description: "Decompose a game concept into individual systems, map dependencies
 argument-hint: "[next | system-name] [--review full|lean|solo]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/map-systems/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 When this skill is invoked:

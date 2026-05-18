@@ -3,7 +3,6 @@ description: "Orchestrate the narrative team: coordinates narrative-director, wr
 argument-hint: "[narrative content description] [--review full|lean|solo]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/team-narrative/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 If no argument is provided, output usage guidance and exit without spawning any agents:
 > Usage: `/team-narrative [narrative content description]` — describe the story content, scene, or narrative area to work on (e.g., `boss encounter cutscene`, `faction intro dialogue`, `tutorial narrative`). Do not use an inline question to the user here; output the guidance directly.

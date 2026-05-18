@@ -3,7 +3,6 @@ description: "Run the critical path smoke test gate before QA hand-off. Executes
 argument-hint: "[sprint | quick | --platform pc|console|mobile|all]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/smoke-check/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 # Smoke Check

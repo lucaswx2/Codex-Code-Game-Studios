@@ -3,7 +3,6 @@ description: "Map test coverage to GDD critical paths, identify fixed bugs witho
 argument-hint: "[update | audit | report]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/regression-suite/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 # Regression Suite

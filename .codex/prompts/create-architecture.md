@@ -4,7 +4,6 @@ argument-hint: "[focus-area: full | layers | data-flow | api-boundaries | adr-au
 agent: technical-director
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/create-architecture/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 # Create Architecture

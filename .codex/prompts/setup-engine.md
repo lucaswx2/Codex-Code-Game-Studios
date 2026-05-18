@@ -3,7 +3,6 @@ description: "Configure the project's game engine and version. Pins the engine i
 argument-hint: "[engine] | [engine version] | refresh | upgrade [old-version] [new-version] | no args for guided selection"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/setup-engine/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 When this skill is invoked:

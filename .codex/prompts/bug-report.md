@@ -3,7 +3,6 @@ description: "Creates a structured bug report from a description, or analyzes co
 argument-hint: "[description] | analyze [path-to-file]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/bug-report/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 ## Phase 1: Parse Arguments

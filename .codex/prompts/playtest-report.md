@@ -3,7 +3,6 @@ description: "Generates a structured playtest report template or analyzes existi
 argument-hint: "[new|analyze path-to-notes] [--review full|lean|solo]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/playtest-report/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 ## Phase 1: Parse Arguments

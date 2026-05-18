@@ -3,7 +3,6 @@ description: "Detect non-deterministic (flaky) tests by reading CI run logs or t
 argument-hint: "[ci-log-path | scan | registry]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/test-flakiness/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 # Test Flakiness Detection

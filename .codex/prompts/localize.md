@@ -4,7 +4,6 @@ argument-hint: "[scan|extract|validate|status|brief|cultural-review|vo-pipeline|
 agent: localization-lead
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/localize/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 # Localization Pipeline

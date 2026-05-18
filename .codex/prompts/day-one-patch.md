@@ -3,7 +3,6 @@ description: "Prepare a day-one patch for a game launch. Scopes, prioritises, im
 argument-hint: "[scope: known-bugs | cert-feedback | all]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/day-one-patch/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 # Day-One Patch

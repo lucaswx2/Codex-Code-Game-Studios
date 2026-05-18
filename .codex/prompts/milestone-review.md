@@ -3,7 +3,6 @@ description: "Generates a comprehensive milestone progress review including feat
 argument-hint: "[milestone-name|current] [--review full|lean|solo]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/milestone-review/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 ## Phase 0: Parse Arguments

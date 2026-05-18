@@ -3,7 +3,6 @@ description: "Scan all GDDs against the entity registry to detect cross-document
 argument-hint: "[full | since-last-review | entity:<name> | item:<name>]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/consistency-check/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 # Consistency Check

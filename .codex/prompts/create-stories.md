@@ -4,7 +4,6 @@ argument-hint: "[epic-slug | epic-path] [--review full|lean|solo]"
 agent: lead-programmer
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/create-stories/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 # Create Stories

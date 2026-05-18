@@ -3,7 +3,6 @@ description: "Reviews a game design document for completeness, internal consiste
 argument-hint: "[path-to-design-doc] [--depth full|lean|solo]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/design-review/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 ## Phase 0: Parse Arguments

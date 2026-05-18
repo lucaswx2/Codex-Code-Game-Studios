@@ -3,7 +3,6 @@ description: "Creates an Architecture Decision Record (ADR) documenting a signif
 argument-hint: "[title] [--review full|lean|solo]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/architecture-decision/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 When this skill is invoked:

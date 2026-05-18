@@ -3,7 +3,6 @@ description: "Validate that a story file is implementation-ready. Checks for emb
 argument-hint: "[story-file-path or 'all' or 'sprint']"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/story-readiness/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 # Story Readiness

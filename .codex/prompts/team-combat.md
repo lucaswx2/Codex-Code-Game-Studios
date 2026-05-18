@@ -3,7 +3,6 @@ description: "Orchestrate the combat team: coordinates game-designer, gameplay-p
 argument-hint: "[combat feature description] [--review full|lean|solo]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/team-combat/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 **Argument check:** If no combat feature description is provided, output:
 > "Usage: `/team-combat [combat feature description]` — Provide a description of the combat feature to design and implement (e.g., `melee parry system`, `ranged weapon spread`)."

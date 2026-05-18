@@ -3,7 +3,6 @@ description: "Lightweight design spec for small changes — tuning adjustments, 
 argument-hint: "[brief description of the change]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/quick-design/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 # Quick Design

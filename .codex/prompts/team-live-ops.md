@@ -3,7 +3,6 @@ description: "Orchestrate the live-ops team for post-launch content planning: co
 argument-hint: "[season name or event description] [--review full|lean|solo]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/team-live-ops/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 **Argument check:** If no season name or event description is provided, output:
 > "Usage: `/team-live-ops [season name or event description]` — Provide the name or description of the season or live event to plan."

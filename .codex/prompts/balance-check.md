@@ -4,7 +4,6 @@ argument-hint: "[system-name|path-to-data-file]"
 agent: economy-designer
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/balance-check/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 ## Phase 1: Identify Balance Domain

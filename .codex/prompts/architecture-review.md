@@ -4,7 +4,6 @@ argument-hint: "[focus: full | coverage | consistency | engine | single-gdd path
 agent: technical-director
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/architecture-review/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 # Architecture Review

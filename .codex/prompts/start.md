@@ -3,7 +3,6 @@ description: "First-time onboarding — asks where you are, then guides you to t
 argument-hint: "[no arguments]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/start/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 # Guided Onboarding

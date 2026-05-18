@@ -4,7 +4,6 @@ argument-hint: "[path-to-file-or-directory]"
 agent: lead-programmer
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/code-review/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 ## Phase 1: Load Target Files

@@ -3,7 +3,6 @@ description: "Generate per-asset visual specifications and AI generation prompts
 argument-hint: "[system:<name> | level:<name> | character:<name>] [--review full|lean|solo]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/asset-spec/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 If no argument is provided, check whether `design/assets/entity-inventory.md` exists:

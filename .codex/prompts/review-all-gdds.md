@@ -3,7 +3,6 @@ description: "Holistic cross-GDD consistency and game design review. Reads all s
 argument-hint: "[focus: full | consistency | design-theory | since-last-review]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/review-all-gdds/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 # Review All GDDs

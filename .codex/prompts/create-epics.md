@@ -4,7 +4,6 @@ argument-hint: "[system-name | layer: foundation|core|feature|presentation | all
 agent: technical-director
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/create-epics/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 # Create Epics

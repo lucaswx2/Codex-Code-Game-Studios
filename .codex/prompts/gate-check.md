@@ -3,7 +3,6 @@ description: "Validate readiness to advance between development phases. Produces
 argument-hint: "[target-phase: systems-design | technical-setup | pre-production | production | polish | release] [--review full|lean|solo]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/gate-check/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 # Phase Gate Validation

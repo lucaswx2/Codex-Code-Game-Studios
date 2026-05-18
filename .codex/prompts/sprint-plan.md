@@ -4,7 +4,6 @@ argument-hint: "[new|update|status] [--review full|lean|solo]"
 context: |
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/sprint-plan/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 ## Phase 0: Parse Arguments

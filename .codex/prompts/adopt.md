@@ -4,7 +4,6 @@ argument-hint: "[focus: full | gdds | adrs | stories | infra]"
 agent: technical-director
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/adopt/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 # Adopt — Brownfield Template Adoption

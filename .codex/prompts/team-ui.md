@@ -3,7 +3,6 @@ description: "Orchestrate the UI team through the full UX pipeline: from UX spec
 argument-hint: "[UI feature description] [--review full|lean|solo]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/team-ui/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 When this skill is invoked, orchestrate the UI team through a structured pipeline.
 

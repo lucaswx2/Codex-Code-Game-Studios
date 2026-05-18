@@ -3,7 +3,6 @@ description: "Orchestrate the polish team: coordinates performance-analyst, tech
 argument-hint: "[feature or area to polish] [--review full|lean|solo]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/team-polish/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 If no argument is provided, output usage guidance and exit without spawning any agents:
 > Usage: `/team-polish [feature or area]` — specify the feature or area to polish (e.g., `combat`, `main menu`, `inventory system`, `level-1`). Do not use an inline question to the user here; output the guidance directly.

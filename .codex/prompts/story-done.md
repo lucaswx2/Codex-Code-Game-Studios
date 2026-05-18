@@ -3,7 +3,6 @@ description: "End-of-story completion review. Reads the story file, verifies eac
 argument-hint: "[story-file-path] [--review full|lean|solo]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/story-done/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 # Story Done

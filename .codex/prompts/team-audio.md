@@ -3,7 +3,6 @@ description: "Orchestrate audio team: audio-director + sound-designer + technica
 argument-hint: "[feature or area to design audio for] [--review full|lean|solo]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/team-audio/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 If no argument is provided, output usage guidance and exit without spawning any agents:

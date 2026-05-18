@@ -3,7 +3,6 @@ description: "Guided, section-by-section Art Bible authoring. Creates the visual
 argument-hint: "[--review full|lean|solo]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/art-bible/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 ## Phase 0: Parse Arguments and Context Check

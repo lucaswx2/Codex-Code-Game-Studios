@@ -4,7 +4,6 @@ argument-hint: "[sprint | feature: system-name] [--review full|lean|solo]"
 agent: qa-lead
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/team-qa/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 When this skill is invoked, orchestrate the QA team through a structured testing cycle.

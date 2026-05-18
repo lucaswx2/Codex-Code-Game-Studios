@@ -3,7 +3,6 @@ description: "Estimates task effort by analyzing complexity, dependencies, histo
 argument-hint: "[task-description]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/estimate/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 ## Phase 1: Understand the Task

@@ -3,7 +3,6 @@ description: "Generate engine-specific test helper libraries for the project's t
 argument-hint: "[system-name | all | scaffold]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/test-helpers/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 # Test Helpers

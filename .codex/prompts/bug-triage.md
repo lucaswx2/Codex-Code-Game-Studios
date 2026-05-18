@@ -3,7 +3,6 @@ description: "Read all open bugs in production/qa/bugs/, re-evaluate priority vs
 argument-hint: "[sprint | full | trend]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/bug-triage/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 # Bug Triage

@@ -4,7 +4,6 @@ argument-hint: "[system-name or 'full']"
 agent: performance-analyst
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/perf-profile/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 ## Phase 1: Determine Scope

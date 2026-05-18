@@ -3,7 +3,6 @@ description: "Guided game concept ideation — from zero idea to a structured ga
 argument-hint: "[genre or theme hint, or 'open'] [--review full|lean|solo]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/brainstorm/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 When this skill is invoked:

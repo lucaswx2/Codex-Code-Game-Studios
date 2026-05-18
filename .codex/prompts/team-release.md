@@ -3,7 +3,6 @@ description: "Orchestrate the release team: coordinates release-manager, qa-lead
 argument-hint: "[version number or 'next'] [--review full|lean|solo]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/team-release/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 **Argument check:** If no version number is provided:
 1. Read `production/session-state/active.md` and the most recent file in `production/milestones/` (if they exist) to infer the target version.

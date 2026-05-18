@@ -4,7 +4,6 @@ argument-hint: "[sprint | feature: system-name | story: path]"
 agent: qa-lead
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/qa-plan/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 # QA Plan

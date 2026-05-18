@@ -3,7 +3,6 @@ description: "Orchestrate level design team: level-designer + narrative-director
 argument-hint: "[level name or area to design] [--review full|lean|solo]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/team-level/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 When this skill is invoked:

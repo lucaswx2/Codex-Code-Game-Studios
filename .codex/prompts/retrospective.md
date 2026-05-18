@@ -3,7 +3,6 @@ description: "Generates a sprint or milestone retrospective by analyzing complet
 argument-hint: "[sprint-N|milestone-name]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/retrospective/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 ## Phase 1: Parse Arguments

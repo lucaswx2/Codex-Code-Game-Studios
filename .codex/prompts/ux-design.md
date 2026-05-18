@@ -4,7 +4,6 @@ argument-hint: "[screen/flow name] or 'hud' or 'patterns'"
 agent: ux-designer
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/ux-design/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 When this skill is invoked:

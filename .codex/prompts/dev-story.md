@@ -3,7 +3,6 @@ description: "Read a story file and implement it. Loads the full context (story,
 argument-hint: "[story-path]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/dev-story/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 # Dev Story

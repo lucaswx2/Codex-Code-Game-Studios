@@ -3,7 +3,6 @@ description: "Emergency fix workflow that bypasses normal sprint processes with 
 argument-hint: "[bug-id or description]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/hotfix/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 > **Explicit invocation only**: This skill should only run when the user explicitly requests it with `/hotfix`. Do not auto-invoke based on context matching.

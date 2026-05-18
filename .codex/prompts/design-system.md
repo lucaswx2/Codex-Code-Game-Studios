@@ -3,7 +3,6 @@ description: "Guided, section-by-section GDD authoring for a single game system.
 argument-hint: "<system-name> [--review full|lean|solo]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/design-system/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 When this skill is invoked:

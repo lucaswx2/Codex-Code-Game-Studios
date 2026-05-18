@@ -3,7 +3,6 @@ description: "Track, categorize, and prioritize technical debt across the codeba
 argument-hint: "[scan|add|prioritize|report]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/tech-debt/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 ## Phase 1: Parse Subcommand

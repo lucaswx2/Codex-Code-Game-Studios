@@ -4,7 +4,6 @@ argument-hint: "[update — regenerate from current ADRs]"
 agent: technical-director
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/create-control-manifest/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 # Create Control Manifest
