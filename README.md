@@ -19,6 +19,10 @@
 
 > **About this project:** Originally derived from [Donchitos's Claude Code Game Studios](https://github.com/Donchitos/Claude-Code-Game-Studios). This is now a standalone OpenAI Codex CLI project — **no Claude Code retrocompatibility**. If you want the Claude Code version, use the upstream repo directly.
 
+> **⚠ Status — work in progress.** The 124 skills (73 workflows + 49 personas) were mechanically converted from the upstream Claude Code template. Only a handful have been runtime-tested end-to-end in Codex CLI v0.130.0. The structural pieces — `AGENTS.md` auto-loading, `.codex/config.toml`, lifecycle hooks, `.agents/skills/<name>/SKILL.md` frontmatter — are validated. Individual skill bodies are spot-tested, not exhaustively; some may have edge cases, broken cross-references, or wording that assumes Claude Code conventions.
+>
+> **Found a broken skill or have a fix? Please open a Pull Request.** Even one-line fixes (invalid YAML, stale paths, unclear wording) are welcome. See [`CONTRIBUTING.md`](CONTRIBUTING.md) for the checklist. The faster the community catches edges, the more useful this template becomes for everyone.
+
 ---
 
 ## Why This Exists
@@ -92,9 +96,17 @@ The template includes agent sets for all three major engines. Use the set that m
 | **Unity** | `unity-specialist` | DOTS/ECS, Shaders/VFX, Addressables, UI Toolkit |
 | **Unreal Engine 5** | `unreal-specialist` | GAS, Blueprints, Replication, UMG/CommonUI |
 
-## Slash Commands
+## Skills
 
-Skills under `.agents/skills/` are invoked with the `$` prefix (e.g. `$start`, `$brainstorm`, `$agent-game-designer`). The `/` prefix is reserved for built-in Codex CLI commands (`/hooks`, `/model`, `/review`, `/quit`). Codex can also auto-select a skill when you describe a task in natural language.
+There are three ways to invoke a skill in a Codex session:
+
+1. **`$` prefix** — type `$<skill-name>` directly in chat. Example: `$start`, `$brainstorm`, `$dev-story`, `$agent-game-designer`. The skill body loads as context for that turn.
+2. **Natural language** — describe what you want and Codex auto-selects a matching skill. Example: *"begin the onboarding flow"* will fire `$start`; *"act as the game designer and review this mechanic"* will fire `$agent-game-designer`.
+3. **First time in repo** — Codex prints `⚠ N hooks need review` on first launch. Run `/hooks` and approve them once, then exit (`/quit`) and re-open `codex` so the SessionStart hook fires. After that, skills work normally.
+
+The `/` prefix is reserved for built-in Codex CLI commands (`/hooks`, `/model`, `/review`, `/quit`, `/copy`, `/statusline`) — **not** for project skills.
+
+### Available skills (browse list)
 
 **Onboarding & Navigation**
 `$start` `$help` `$project-stage-detect` `$setup-engine` `$adopt`

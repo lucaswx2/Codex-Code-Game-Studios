@@ -78,10 +78,30 @@ All skills live at `.agents/skills/<name>/SKILL.md`. Two categories:
 
 See [hooks.md](hooks.md) for the lifecycle-hook reference and TOML syntax.
 
-## When something is missing
+## Status — what is and isn't tested
 
-If a workflow that worked under Claude Code does not work under Codex:
+The framework structure (AGENTS.md loading, `.codex/config.toml`, lifecycle
+hooks, `.agents/skills/<name>/SKILL.md` discovery and frontmatter parsing)
+has been validated against Codex CLI v0.130.0. The 124 skill bodies were
+mechanically rewritten from the upstream Claude Code template and are
+**only spot-tested**, not exhaustively validated. Expect some skills to
+need polish or have broken cross-references when first invoked — especially
+ones that reference other skills, templates, or paths that may have
+shifted during the migration.
+
+## When something is broken
+
+If a skill misbehaves, has stale path references, or its YAML frontmatter
+won't parse:
 
 1. Check `hooks.md` — the event may not be supported.
-2. Edit the skill directly at `.agents/skills/<name>/SKILL.md`.
-3. File an issue.
+2. Open `.agents/skills/<name>/SKILL.md` and read the frontmatter +
+   first body lines. Common issues:
+   - Missing or mis-indented YAML fields
+   - References to `.codex/prompts/` or `.codex/personas/` (old paths)
+   - References to other skills by `/skill-name` instead of `$skill-name`
+3. Fix it locally and **submit a PR** to this repo. Even one-line fixes
+   are welcome — see [`../../CONTRIBUTING.md`](../../CONTRIBUTING.md).
+
+If you cannot fix it yourself, open an issue with the skill name, the
+error Codex printed, and steps to reproduce.
