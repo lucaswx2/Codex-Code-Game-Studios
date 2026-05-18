@@ -3,7 +3,7 @@ description: "Orchestrate the combat team: coordinates game-designer, gameplay-p
 argument-hint: "[combat feature description] [--review full|lean|solo]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/team-combat/SKILL.md`.
+> Codex slash-prompt. Originally derived from `.claude/skills/team-combat/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 **Argument check:** If no combat feature description is provided, output:
 > "Usage: `/team-combat [combat feature description]` — Provide a description of the combat feature to design and implement (e.g., `melee parry system`, `ranged weapon spread`)."
@@ -11,7 +11,7 @@ Then stop immediately without spawning any subagents or reading any files.
 
 When this skill is invoked with a valid argument, orchestrate the combat team through a structured pipeline.
 
-**Decision Points:** At each phase transition, use `AskUserQuestion` to present
+**Decision Points:** At each phase transition, use an inline question to the user to present
 the user with the subagent's proposals as selectable options. Write the agent's
 full analysis in conversation, then capture the decision with concise labels.
 The user must approve before moving to the next phase.
@@ -40,7 +40,7 @@ Store the resolved mode for use in all subsequent phases.
 
 ## How to Delegate
 
-Use the /agent-team-combat prompt to spawn each team member as a subagent:
+Use the /agent-<name> prompt to spawn each team member as a subagent:
 - `subagent_type: game-designer` — Design the mechanic, define formulas and edge cases
 - `subagent_type: gameplay-programmer` — Implement the core gameplay code
 - `subagent_type: ai-programmer` — Implement NPC/enemy AI behavior
@@ -71,7 +71,7 @@ Then spawn the **primary engine specialist** to validate the proposed architectu
 - Any proposed APIs that are deprecated or changed in the pinned engine version?
 - Output: engine architecture notes — incorporate into the architecture before Phase 3 begins
 
-Use `AskUserQuestion`:
+Use an inline question to the user:
 - Prompt: "Architecture sketch complete. Approve to proceed with parallel implementation."
 - Options:
   - `[A] Proceed — spawn implementation agents (gameplay-programmer, ai-programmer, technical-artist, sound-designer)`
@@ -110,7 +110,7 @@ If any spawned agent (via the relevant /agent-<name> Codex prompt) returns BLOCK
 
 1. **Surface immediately**: Report "[AgentName]: BLOCKED — [reason]" to the user before continuing to dependent phases
 2. **Assess dependencies**: Check whether the blocked agent's output is required by subsequent phases. If yes, do not proceed past that dependency point without user input.
-3. **Offer options** via AskUserQuestion with choices:
+3. **Offer options** via an inline user question with choices:
    - Skip this agent and note the gap in the final report
    - Retry with narrower scope
    - Stop here and resolve the blocker first

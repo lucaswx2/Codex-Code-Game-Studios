@@ -3,7 +3,7 @@ description: "Fast sprint status check. Reads the current sprint plan, scans sto
 argument-hint: "[sprint-number or blank for current]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/sprint-status/SKILL.md`.
+> Codex slash-prompt. Originally derived from `.claude/skills/sprint-status/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 # Sprint Status

@@ -4,7 +4,7 @@ argument-hint: "[system-name | layer: foundation|core|feature|presentation | all
 agent: technical-director
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/create-epics/SKILL.md`.
+> Codex slash-prompt. Originally derived from `.claude/skills/create-epics/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 # Create Epics
@@ -115,7 +115,7 @@ If there are untraced requirements:
 > stories for these requirements will be marked Blocked until ADRs exist.
 > Run `/architecture-decision` first, or proceed with placeholders."
 
-Use `AskUserQuestion`:
+Use an inline question to the user:
 - Prompt: "Shall I create Epic: [name]?"
 - Options:
   - `[A] Yes, create it`
@@ -139,7 +139,7 @@ Present the producer's assessment.
 
 If UNREALISTIC: offer to revise epic boundaries (split overscoped or merge underscoped epics). Revise and re-run the gate before writing.
 
-If CONCERNS, use `AskUserQuestion`:
+If CONCERNS, use an inline question to the user:
 - Prompt: "Producer raised concerns about the epic structure. How do you want to proceed?"
 - Options:
   - `[A] Proceed as planned — I accept the producer's concerns`

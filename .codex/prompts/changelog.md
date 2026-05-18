@@ -5,7 +5,7 @@ context: |
 !git tag --list --sort=-v: refname 2>/dev/null | head -5
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/changelog/SKILL.md`.
+> Codex slash-prompt. Originally derived from `.claude/skills/changelog/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 ## Phase 1: Parse Arguments

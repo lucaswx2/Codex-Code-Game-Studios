@@ -3,14 +3,14 @@ description: "Orchestrate the polish team: coordinates performance-analyst, tech
 argument-hint: "[feature or area to polish] [--review full|lean|solo]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/team-polish/SKILL.md`.
+> Codex slash-prompt. Originally derived from `.claude/skills/team-polish/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 If no argument is provided, output usage guidance and exit without spawning any agents:
-> Usage: `/team-polish [feature or area]` — specify the feature or area to polish (e.g., `combat`, `main menu`, `inventory system`, `level-1`). Do not use `AskUserQuestion` here; output the guidance directly.
+> Usage: `/team-polish [feature or area]` — specify the feature or area to polish (e.g., `combat`, `main menu`, `inventory system`, `level-1`). Do not use an inline question to the user here; output the guidance directly.
 
 When this skill is invoked with an argument, orchestrate the polish team through a structured pipeline.
 
-**Decision Points:** At each phase transition, use `AskUserQuestion` to present
+**Decision Points:** At each phase transition, use an inline question to the user to present
 the user with the subagent's proposals as selectable options. Write the agent's
 full analysis in conversation, then capture the decision with concise labels.
 The user must approve before moving to the next phase.
@@ -40,7 +40,7 @@ Store the resolved mode for use in all subsequent phases.
 
 ## How to Delegate
 
-Use the /agent-team-polish prompt to spawn each team member as a subagent:
+Use the /agent-<name> prompt to spawn each team member as a subagent:
 - `subagent_type: performance-analyst` — Profiling, optimization, memory analysis
 - `subagent_type: engine-programmer` — Engine-level fixes for rendering, memory, resource loading
 - `subagent_type: technical-artist` — VFX polish, shader optimization, visual quality
@@ -110,7 +110,7 @@ If any spawned agent (via the relevant /agent-<name> Codex prompt) returns BLOCK
 
 1. **Surface immediately**: Report "[AgentName]: BLOCKED — [reason]" to the user before continuing to dependent phases
 2. **Assess dependencies**: Check whether the blocked agent's output is required by subsequent phases. If yes, do not proceed past that dependency point without user input.
-3. **Offer options** via AskUserQuestion with choices:
+3. **Offer options** via an inline user question with choices:
    - Skip this agent and note the gap in the final report
    - Retry with narrower scope
    - Stop here and resolve the blocker first

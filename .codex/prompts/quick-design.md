@@ -3,7 +3,7 @@ description: "Lightweight design spec for small changes — tuning adjustments, 
 argument-hint: "[brief description of the change]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/quick-design/SKILL.md`.
+> Codex slash-prompt. Originally derived from `.claude/skills/quick-design/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 # Quick Design
@@ -45,7 +45,7 @@ and redirect to `/design-system` instead.
 
 If there is no argument, ask the user to describe the change (plain text prompt), then classify it using the criteria above.
 
-Present the inferred classification using `AskUserQuestion`:
+Present the inferred classification using an inline question to the user:
 - Prompt: "I've classified this as **[inferred type]** — [brief reason]. Is that correct?"
 - Options:
   - `[A] Yes — [inferred type] is correct`
@@ -221,7 +221,7 @@ tracking threshold — quick spec is sufficient."]
 
 ## 4. Approval and Filing
 
-Present the draft to the user in full. Then use `AskUserQuestion`:
+Present the draft to the user in full. Then use an inline question to the user:
 - Prompt: "Here's the Quick Design Spec draft. How do you want to proceed?"
 - Options:
   - `[A] Approve — write it as shown`

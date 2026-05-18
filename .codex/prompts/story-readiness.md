@@ -3,7 +3,7 @@ description: "Validate that a story file is implementation-ready. Checks for emb
 argument-hint: "[story-file-path or 'all' or 'sprint']"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/story-readiness/SKILL.md`.
+> Codex slash-prompt. Originally derived from `.claude/skills/story-readiness/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 # Story Readiness
@@ -34,7 +34,7 @@ See `.claude/docs/director-gates.md` for the full check pattern and mode definit
 
 ## 1. Parse Arguments
 
-**Scope:** `$ARGUMENTS[0]` (blank = ask user via AskUserQuestion)
+**Scope:** `$ARGUMENTS[0]` (blank = ask user via an inline user question)
 
 - **Specific path** (e.g., `/story-readiness production/epics/combat/story-001-basic-attack.md`):
   validate that single story file.
@@ -44,7 +44,7 @@ See `.claude/docs/director-gates.md` for the full check pattern and mode definit
   validate every story file found.
 - **No argument**: ask the user which scope to validate.
 
-If no argument is given, use `AskUserQuestion`:
+If no argument is given, use an inline question to the user:
 - "What would you like to validate?"
   - Options: "A specific story file", "All stories in the current sprint",
     "All stories in production/epics/", "Stories for a specific epic"
@@ -341,7 +341,7 @@ Pass the following context:
 
 Handle the verdict per standard rules in `director-gates.md`:
 - **ADEQUATE** → story is cleared. Proceed to close.
-- **GAPS [list]** → surface the specific gaps to the user via `AskUserQuestion`:
+- **GAPS [list]** → surface the specific gaps to the user via an inline question to the user:
   options: `Update story with suggested gaps` / `Accept and proceed anyway` / `Discuss further`.
 - **INADEQUATE** → surface the specific gaps; ask user whether to update the story or proceed anyway.
 

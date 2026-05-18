@@ -3,7 +3,7 @@ description: "Validate readiness to advance between development phases. Produces
 argument-hint: "[target-phase: systems-design | technical-setup | pre-production | production | polish | release] [--review full|lean|solo]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/gate-check/SKILL.md`.
+> Codex slash-prompt. Originally derived from `.claude/skills/gate-check/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 # Phase Gate Validation
@@ -46,7 +46,7 @@ Note: in `solo` mode, director spawns (CD-PHASE-GATE, TD-PHASE-GATE, PR-PHASE-GA
 - **No argument**: Auto-detect current stage using the same heuristics as
   `/project-stage-detect`, then **confirm with the user before running**:
 
-  Use `AskUserQuestion`:
+  Use an inline question to the user:
   - Prompt: "Detected stage: **[current stage]**. Running gate for [Current] → [Next] transition. Is this correct?"
   - Options:
     - `[A] Yes — run this gate`
@@ -312,7 +312,7 @@ For items that can't be automatically verified, **ask the user**:
 
 (Review mode was resolved in Phase 1. Use that stored value here.)
 
-Before generating the final verdict, spawn all four directors as **parallel subagents** via the relevant /agent-<name> Codex prompt using the parallel gate protocol from `.claude/docs/director-gates.md`. Issue all four Task calls simultaneously — do not wait for one before starting the next.
+Before generating the final verdict, spawn all four directors as **parallel subagents** via the relevant /agent-<name> Codex prompt using the parallel gate protocol from `.claude/docs/director-gates.md`. Issue all four /agent-<name> invocations simultaneously — do not wait for one before starting the next.
 
 **Spawn in parallel:**
 
@@ -443,7 +443,7 @@ echo -n "Production" > production/stage.txt
 
 ## 7. Closing Next-Step Widget
 
-After the verdict is presented and any stage.txt update is complete, close with a structured next-step prompt using `AskUserQuestion`.
+After the verdict is presented and any stage.txt update is complete, close with a structured next-step prompt using an inline question to the user.
 
 **Tailor the options to the gate that just ran:**
 

@@ -4,7 +4,7 @@ argument-hint: "[scan|extract|validate|status|brief|cultural-review|vo-pipeline|
 agent: localization-lead
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/localize/SKILL.md`.
+> Codex slash-prompt. Originally derived from `.claude/skills/localize/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 # Localization Pipeline
@@ -331,7 +331,7 @@ Pre-Freeze Checklist
 [ ] Marketing strings (store description, achievements) are final
 ```
 
-Use `AskUserQuestion`:
+Use an inline question to the user:
 - Prompt: "Are all items above confirmed? Calling string freeze locks the source table."
 - Options: `[A] Yes — call string freeze now` / `[B] No — I still have strings to add`
 

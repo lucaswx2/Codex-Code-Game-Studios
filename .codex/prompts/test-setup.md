@@ -3,7 +3,7 @@ description: "Scaffold the test framework and CI/CD pipeline for the project's e
 argument-hint: "[force]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/test-setup/SKILL.md`.
+> Codex slash-prompt. Originally derived from `.claude/skills/test-setup/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 # Test Setup

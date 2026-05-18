@@ -3,7 +3,7 @@ description: "Quality review of test files and manual evidence documents. Goes b
 argument-hint: "[story-path | sprint | system-name]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/test-evidence-review/SKILL.md`.
+> Codex slash-prompt. Originally derived from `.claude/skills/test-evidence-review/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 # Test Evidence Review

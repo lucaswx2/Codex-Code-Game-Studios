@@ -4,7 +4,7 @@ argument-hint: "[system-name | --summary | (no arg = full audit)]"
 agent: producer
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/content-audit/SKILL.md`.
+> Codex slash-prompt. Originally derived from `.claude/skills/content-audit/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 When this skill is invoked:

@@ -4,7 +4,7 @@ argument-hint: "[new|update|status] [--review full|lean|solo]"
 context: |
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/sprint-plan/SKILL.md`.
+> Codex slash-prompt. Originally derived from `.claude/skills/sprint-plan/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 ## Phase 0: Parse Arguments
@@ -18,7 +18,7 @@ See `.claude/docs/director-gates.md` for the full check pattern.
 
 **Review mode check** (before gates run):
 - Read `production/review-mode.txt` if it exists. Use that mode.
-- If the file doesn't exist and this is a `new` sprint: use `AskUserQuestion`:
+- If the file doesn't exist and this is a `new` sprint: use an inline question to the user:
   - Prompt: "No review mode is set. Which review depth would you like for this sprint?"
   - Options:
     - `[A] full — spawn all director and lead gates`
@@ -103,7 +103,7 @@ For `update`:
 
 1. Read the most recent sprint plan from `production/sprints/`.
 2. Present the current story list with their current statuses from `production/sprint-status.yaml`.
-3. Ask the user what to change: stories to add, remove, reprioritize, or re-estimate. Use `AskUserQuestion` to gather changes.
+3. Ask the user what to change: stories to add, remove, reprioritize, or re-estimate. Use an inline question to the user to gather changes.
 4. Apply the changes and re-present the full revised plan for review.
 5. Re-run the producer feasibility gate (Phase 4) on the revised plan.
 6. Write the updated markdown plan and yaml together (same approval as `new` mode).
@@ -211,7 +211,7 @@ Present the producer's assessment.
 
 If UNREALISTIC: revise the story selection (defer stories to Should Have or Nice to Have) and re-present the updated plan before asking for write approval.
 
-If CONCERNS, use `AskUserQuestion`:
+If CONCERNS, use an inline question to the user:
 - Prompt: "Producer flagged concerns with this sprint plan. How do you want to proceed?"
 - Options:
   - `[A] Proceed as planned — I accept the risk`
@@ -244,7 +244,7 @@ Use `Glob` to look for `production/qa/qa-plan-sprint-[N].md` or any file in `pro
 >
 > Run `/qa-plan sprint` now, before starting any implementation. It takes one session and produces the test case requirements each story needs."
 
-Use `AskUserQuestion`:
+Use an inline question to the user:
 - Prompt: "No QA plan found for this sprint. How do you want to proceed?"
 - Options:
   - `[A] Run /qa-plan sprint now — I'll do that before starting implementation (Recommended)`

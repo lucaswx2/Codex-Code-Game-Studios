@@ -4,7 +4,7 @@ argument-hint: "[file-path or 'all' or 'hud' or 'patterns']"
 agent: ux-designer
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/ux-review/SKILL.md`.
+> Codex slash-prompt. Originally derived from `.claude/skills/ux-review/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 ## Overview

@@ -3,7 +3,7 @@ description: "Validate skill files for structural compliance and behavioral corr
 argument-hint: "static [skill-name | all] | spec [skill-name] | category [skill-name | all] | audit"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/skill-test/SKILL.md`.
+> Codex slash-prompt. Originally derived from `.claude/skills/skill-test/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 # Skill Test

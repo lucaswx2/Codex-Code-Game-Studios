@@ -4,7 +4,7 @@ argument-hint: "[version] [--style brief|detailed|full]"
 agent: community-manager
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/patch-notes/SKILL.md`.
+> Codex slash-prompt. Originally derived from `.claude/skills/patch-notes/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 ## Phase 1: Parse Arguments

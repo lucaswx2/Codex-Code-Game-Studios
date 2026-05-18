@@ -3,7 +3,7 @@ description: "Map test coverage to GDD critical paths, identify fixed bugs witho
 argument-hint: "[update | audit | report]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/regression-suite/SKILL.md`.
+> Codex slash-prompt. Originally derived from `.claude/skills/regression-suite/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 # Regression Suite
@@ -35,7 +35,7 @@ and known failure points. This skill maintains that list.
   existing test coverage; flag paths with no regression test
 - `/regression-suite report` — read-only status report (no writes); suitable
   for sprint reviews
-- No argument — if a sprint is clearly active (sprint plan exists with in-progress stories), run `update`. If ambiguous or no active sprint is detected, use `AskUserQuestion`:
+- No argument — if a sprint is clearly active (sprint plan exists with in-progress stories), run `update`. If ambiguous or no active sprint is detected, use an inline question to the user:
   - Prompt: "No subcommand specified. Which mode do you want to run?"
   - Options:
     - `[A] update — scan new bug fixes this sprint and add missing regression tests`

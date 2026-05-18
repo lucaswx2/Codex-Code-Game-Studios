@@ -4,12 +4,12 @@ argument-hint: "[sprint | feature: system-name] [--review full|lean|solo]"
 agent: qa-lead
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/team-qa/SKILL.md`.
+> Codex slash-prompt. Originally derived from `.claude/skills/team-qa/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 When this skill is invoked, orchestrate the QA team through a structured testing cycle.
 
-**Decision Points:** At each phase transition, use `AskUserQuestion` to present
+**Decision Points:** At each phase transition, use an inline question to the user to present
 the user with the subagent's proposals as selectable options. Write the agent's
 full analysis in conversation, then capture the decision with concise labels.
 The user must approve before moving to the next phase.
@@ -34,7 +34,7 @@ Store the resolved mode for use in all subsequent phases.
 
 ## How to Delegate
 
-Use the /agent-team-qa prompt to spawn each team member as a subagent:
+Use the /agent-<name> prompt to spawn each team member as a subagent:
 - `subagent_type: qa-lead` — Strategy, planning, classification, sign-off
 - `subagent_type: qa-tester` — Test case writing and bug report writing
 
@@ -76,7 +76,7 @@ Prompt the qa-lead to:
 
 If the smoke check result is **FAIL**, the qa-lead must list the failures prominently. QA cannot proceed past the strategy phase with a failed smoke check.
 
-Present the qa-lead's full strategy to the user, then use `AskUserQuestion`:
+Present the qa-lead's full strategy to the user, then use an inline question to the user:
 
 ```
 question: "QA Strategy Review"
@@ -131,7 +131,7 @@ Each test case set should include:
 
 Present the test cases to the user for review before execution. Group by story.
 
-Use `AskUserQuestion` per story group (batched 3-4 at a time):
+Use an inline question to the user per story group (batched 3-4 at a time):
 
 ```
 question: "Test cases ready for [Story Group]. Review before manual QA begins?"
@@ -145,7 +145,7 @@ options:
 
 Walk through each story in the approved manual QA list.
 
-Batch stories into groups of 3-4 and use `AskUserQuestion` for each:
+Batch stories into groups of 3-4 and use an inline question to the user for each:
 
 ```
 question: "Manual QA — [Story Title]\n[brief description of what to test]"
@@ -156,7 +156,7 @@ options:
   - "BLOCKED — cannot test yet (reason)"
 ```
 
-After each FAIL result: use `AskUserQuestion` to collect the failure description, then spawn `qa-tester` via the relevant /agent-<name> Codex prompt to write a formal bug report in `production/qa/bugs/`.
+After each FAIL result: use an inline question to the user to collect the failure description, then spawn `qa-tester` via the relevant /agent-<name> Codex prompt to write a formal bug report in `production/qa/bugs/`.
 
 Bug report naming: `BUG-[NNN]-[short-slug].md` (increment NNN from existing bugs in the directory).
 
@@ -215,7 +215,7 @@ If any spawned agent (via the relevant /agent-<name> Codex prompt) returns BLOCK
 
 1. **Surface immediately**: Report "[AgentName]: BLOCKED — [reason]" to the user before continuing to dependent phases
 2. **Assess dependencies**: Check whether the blocked agent's output is required by subsequent phases. If yes, do not proceed past that dependency point without user input.
-3. **Offer options** via AskUserQuestion with choices:
+3. **Offer options** via an inline user question with choices:
    - Skip this agent and note the gap in the final report
    - Retry with narrower scope
    - Stop here and resolve the blocker first

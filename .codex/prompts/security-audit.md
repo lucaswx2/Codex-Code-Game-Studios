@@ -4,7 +4,7 @@ argument-hint: "[full | network | save | input | quick]"
 agent: security-engineer
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/security-audit/SKILL.md`.
+> Codex slash-prompt. Originally derived from `.claude/skills/security-audit/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 # Security Audit

@@ -5,7 +5,7 @@ agent: prototyper
 isolation: worktree
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/vertical-slice/SKILL.md`.
+> Codex slash-prompt. Originally derived from `.claude/skills/vertical-slice/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 ## Purpose

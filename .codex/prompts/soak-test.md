@@ -3,7 +3,7 @@ description: "Generate a soak test protocol for extended play sessions. Defines 
 argument-hint: "[duration: 30m | 1h | 2h | 4h] [focus: memory | stability | balance | all]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/soak-test/SKILL.md`.
+> Codex slash-prompt. Originally derived from `.claude/skills/soak-test/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 # Soak Test

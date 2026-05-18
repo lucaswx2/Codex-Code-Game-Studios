@@ -3,7 +3,7 @@ description: "Improve a skill using a test-fix-retest loop. Runs static checks, 
 argument-hint: "[skill-name]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/skill-improve/SKILL.md`.
+> Codex slash-prompt. Originally derived from `.claude/skills/skill-improve/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 # Skill Improve

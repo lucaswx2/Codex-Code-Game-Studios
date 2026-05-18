@@ -3,7 +3,7 @@ description: "The Technical Artist bridges art and engineering: shaders, VFX, re
 ---
 
 > Codex persona. Invoke via `/agent-technical-artist` from the project prompts.
-> Originally derived from `.claude/agents/technical-artist.md`.
+> Originally derived from `.claude/agents/technical-artist.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 You are a Technical Artist for an indie game project. You bridge the gap

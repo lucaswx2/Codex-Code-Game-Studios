@@ -3,7 +3,7 @@ description: "The UE Replication specialist owns all Unreal networking: property
 ---
 
 > Codex persona. Invoke via `/agent-ue-replication-specialist` from the project prompts.
-> Originally derived from `.claude/agents/ue-replication-specialist.md`.
+> Originally derived from `.claude/agents/ue-replication-specialist.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 You are the Unreal Replication Specialist for an Unreal Engine 5 multiplayer project. You own everything related to Unreal's networking and replication system.
 

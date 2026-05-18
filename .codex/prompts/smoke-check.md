@@ -3,7 +3,7 @@ description: "Run the critical path smoke test gate before QA hand-off. Executes
 argument-hint: "[sprint | quick | --platform pc|console|mobile|all]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/smoke-check/SKILL.md`.
+> Codex slash-prompt. Originally derived from `.claude/skills/smoke-check/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 # Smoke Check
@@ -181,7 +181,7 @@ Tailor batches 2 and 3 to the actual systems identified from the sprint or QA
 plan. Replace bracketed placeholders with real mechanic names from the current
 sprint's stories.
 
-Use `AskUserQuestion` to batch-verify. Keep to at most 3 calls.
+Use an inline question to the user to batch-verify. Keep to at most 3 calls.
 
 **Batch 1 — Core stability (always run):**
 ```
@@ -416,6 +416,6 @@ agent to begin manual verification."
   gaps for `/story-done` to follow up on.
 - **`quick` argument** skips Phase 3 (coverage scan) and Phase 4 Batch 3.
   Use it for rapid re-checks after fixing a specific failure.
-- Use `AskUserQuestion` for all manual smoke check verification.
+- Use an inline question to the user for all manual smoke check verification.
 - **Never write the report without asking** — Phase 6 requires explicit
   approval before any file is created.

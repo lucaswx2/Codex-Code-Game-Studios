@@ -3,7 +3,7 @@ description: "Automatically analyze project state, detect stage, identify gaps, 
 argument-hint: "[optional: role filter like 'programmer' or 'designer']"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/project-stage-detect/SKILL.md`.
+> Codex slash-prompt. Originally derived from `.claude/skills/project-stage-detect/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 # Project Stage Detection

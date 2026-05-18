@@ -5,7 +5,7 @@ agent: prototyper
 isolation: worktree
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/prototype/SKILL.md`.
+> Codex slash-prompt. Originally derived from `.claude/skills/prototype/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 ## Purpose
@@ -36,7 +36,7 @@ Resolve the review mode (once, store for all gate spawns this run):
 **Check for spike mode:** If `--spike` was passed, skip to the **Spike Mode** section
 at the bottom of this skill.
 
-Otherwise, use `AskUserQuestion` to confirm intent before proceeding:
+Otherwise, use an inline question to the user to confirm intent before proceeding:
 
 - **Prompt**: "How would you like to use this prototype session?"
 - **Options**:
@@ -224,7 +224,7 @@ the player feels something? If it takes more than 3-4 exchanges, the opening is 
 
 ---
 
-Assess which path best fits the hypothesis, then use `AskUserQuestion` with your
+Assess which path best fits the hypothesis, then use an inline question to the user with your
 recommendation pre-stated:
 
 - **Prompt**: "Which prototype path would you like to use? (Based on your concept, I'd recommend [path] — [one sentence reason].)"
@@ -518,7 +518,7 @@ gate implications. Hard cap: ~4 hours.
 
 1. **Define the spike question** (plain text, not a widget): "What specific question does this spike answer? Give me one sentence: 'Can we [do X] using [approach Y]?'"
 
-2. **Choose path** — same AskUserQuestion widget as Phase 3 (HTML / Engine / Paper).
+2. **Choose path** — same an inline user question widget as Phase 3 (HTML / Engine / Paper).
 
 3. **Scope** — maximum 2-3 bullet points. One mechanic, one technical question, nothing else.
 

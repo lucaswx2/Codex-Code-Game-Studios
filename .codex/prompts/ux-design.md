@@ -4,7 +4,7 @@ argument-hint: "[screen/flow name] or 'hud' or 'patterns'"
 agent: ux-designer
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/ux-design/SKILL.md`.
+> Codex slash-prompt. Originally derived from `.claude/skills/ux-design/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 When this skill is invoked:
@@ -20,7 +20,7 @@ Three authoring modes exist based on the argument:
 | Any other value (e.g., `main-menu`, `inventory`) | UX spec for a screen or flow | `design/ux/[argument].md` |
 | No argument | Ask the user | (see below) |
 
-**If no argument is provided**, do not fail — ask instead. Use `AskUserQuestion`:
+**If no argument is provided**, do not fail — ask instead. Use an inline question to the user:
 - "What are we designing today?"
   - Options: "A specific screen or flow (I'll name it)", "The game HUD", "The interaction pattern library", "I'm not sure — help me figure it out"
 
@@ -412,18 +412,18 @@ Context  ->  Questions  ->  Options  ->  Decision  ->  Draft  ->  Approval  ->  
 
 1. **Context**: State what this section needs to contain and surface any relevant
    constraints from context gathered in Phase 2.
-2. **Questions**: Ask what is needed to draft this section. Use `AskUserQuestion`
+2. **Questions**: Ask what is needed to draft this section. Use an inline question to the user
    for constrained choices, conversational text for open-ended exploration.
 3. **Options**: Where design choices exist, present 2-4 approaches with pros/cons.
-   Explain reasoning in conversation, then use `AskUserQuestion` to capture the decision.
+   Explain reasoning in conversation, then use an inline question to the user to capture the decision.
 4. **Decision**: User picks an approach or provides custom direction.
 5. **Draft**: Write the section content in conversation for review. Flag provisional
    assumptions explicitly.
-6. **Approval**: Use `AskUserQuestion`:
+6. **Approval**: Use an inline question to the user:
    - "Does this capture the [section name] correctly?"
    - Options: "Yes — write it to the file", "Small changes needed (describe below)", "Major rethink needed"
    Do not proceed to step 7 until the user selects "Yes".
-7. **Write**: Use `AskUserQuestion`: "May I write the [section name] section to `[filepath]`?"
+7. **Write**: Use an inline question to the user: "May I write the [section name] section to `[filepath]`?"
    - Options: "Yes, write it", "Wait — one more change"
    Once confirmed, use `Edit` to replace the `[To be designed]` placeholder with approved content.
 
@@ -508,7 +508,7 @@ This is the largest and most interactive section. Work through it in sub-section
   area, action bar, sidebar, etc.).
 - Offer 2-3 zone arrangements with rationale for each. Reference platform and
   input context gathered from game concept.
-- Use `AskUserQuestion` to capture the choice:
+- Use an inline question to the user to capture the choice:
   - "Which zone arrangement fits best?"
   - Options: [the 2-3 named arrangements you just presented] + "None — build a custom arrangement"
 
@@ -522,7 +522,7 @@ This is the largest and most interactive section. Work through it in sub-section
 
 **Sub-section 4 — ASCII Wireframe**:
 - Offer to generate an ASCII wireframe based on the zone layout and component list.
-- Use `AskUserQuestion`: "Want an ASCII wireframe as part of this spec?"
+- Use an inline question to the user: "Want an ASCII wireframe as part of this spec?"
   - Options: "Yes, include one", "No, I'll attach a separate file"
 - If yes, produce the wireframe in conversation first. Ask for feedback before
   writing it to file.
@@ -681,7 +681,7 @@ Write at least 5 specific, testable criteria that a QA tester can verify without
 - 1 accessibility criterion (per committed tier)
 - 1 criterion specific to this screen's core purpose
 
-Use `AskUserQuestion` to confirm:
+Use an inline question to the user to confirm:
 - "Do these acceptance criteria cover what would make this screen 'done' for your QA process?"
 - Options: "Yes — these are solid", "Add one more criterion", "Remove or rephrase one"
 
@@ -727,7 +727,7 @@ For each item, ask the user to categorize it:
 | **On Demand** | Player must actively request it (toggle, hold button) |
 | **Hidden** | Communicated through world/audio, never on-screen text |
 
-Use `AskUserQuestion` to step through items in groups of 3-4, not all at once.
+Use an inline question to the user to step through items in groups of 3-4, not all at once.
 This is the most consequential design decision in the HUD — do not rush it.
 
 **Conflict check**: If the information philosophy (Section A) says "nearly HUD-free"
@@ -823,7 +823,7 @@ For each pattern (existing or new), document:
 **Reference**: [Screenshot path or ASCII example, if available]
 ```
 
-Work through patterns in groups. Use `AskUserQuestion`:
+Work through patterns in groups. Use an inline question to the user:
 - "How do you want to work through these patterns?"
 - Options: "Draft the first batch from existing specs (faster)", "Define them one by one (more control)", "Start with the most-used pattern first"
 
@@ -851,7 +851,7 @@ this screen have a corresponding element in this spec? Present any gaps.
 **2. Pattern library alignment**: Are all interaction patterns used in this spec
 referenced by name? If a new pattern was invented during this spec session, flag
 it for addition to the pattern library:
-Use `AskUserQuestion`:
+Use an inline question to the user:
 - "This spec uses [pattern name], which isn't in the pattern library yet. What should we do?"
 - Options: "Add it to the pattern library now", "Flag it as a gap and continue", "Skip — this pattern is one-off"
 
@@ -895,7 +895,7 @@ Before presenting options, state clearly:
 > implementation pipeline. The Pre-Production gate requires all key screen specs
 > to have a review verdict."
 
-Then use `AskUserQuestion`:
+Then use an inline question to the user:
 - "Run `/ux-review [filename]` now, or do something else first?"
   - Options:
     - "Run `/ux-review` now — validate this spec"
@@ -941,7 +941,7 @@ specific sub-topics, additional context or coordination may be needed:
 | Narrative/lore visible in the UI | `narrative-director` — for flavor text, item names, lore panels |
 | Accessibility tier decisions | Handled by this session — owned by ux-designer |
 
-When delegating to another agent via the /agent-ux-design prompt:
+When delegating to another agent via the /agent-<name> prompt:
 - Provide: screen name, game concept summary, the specific question needing expert input
 - The agent returns analysis to this session
 - This session presents the agent's output to the user
@@ -955,7 +955,7 @@ When delegating to another agent via the /agent-ux-design prompt:
 This skill follows the collaborative design principle at every step:
 
 1. **Question -> Options -> Decision -> Draft -> Approval** for every section
-2. **AskUserQuestion** at every decision point (Explain -> Capture pattern):
+2. **an inline user question** at every decision point (Explain -> Capture pattern):
    - Phase 2: "Ready to start, or need more context?"
    - Phase 3: "May I create the skeleton?"
    - Phase 4 (each section): design questions, approach options, draft approval

@@ -3,7 +3,7 @@ description: "Track, categorize, and prioritize technical debt across the codeba
 argument-hint: "[scan|add|prioritize|report]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/tech-debt/SKILL.md`.
+> Codex slash-prompt. Originally derived from `.claude/skills/tech-debt/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 ## Phase 1: Parse Subcommand
@@ -54,7 +54,7 @@ If no, stop here. Verdict: **BLOCKED** — user declined write.
 
 Ask the user for the description, affected files, and impact if left unfixed (plain text prompts).
 
-Then use `AskUserQuestion` to collect the **category**:
+Then use an inline question to the user to collect the **category**:
 - Prompt: "What category does this tech debt belong to?"
 - Options:
   - `[A] Architecture Debt — wrong abstractions, missing patterns, coupling issues`
@@ -64,7 +64,7 @@ Then use `AskUserQuestion` to collect the **category**:
   - `[E] Dependency Debt — outdated packages, deprecated APIs, version conflicts`
   - `[F] Performance Debt — known slow paths, memory issues, unoptimized queries`
 
-Then use `AskUserQuestion` to collect the **estimated fix effort**:
+Then use an inline question to the user to collect the **estimated fix effort**:
 - Prompt: "What is the estimated effort to fix this item?"
 - Options:
   - `[A] S — Small (under 1 day)`

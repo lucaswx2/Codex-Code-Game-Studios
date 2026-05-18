@@ -3,7 +3,7 @@ description: "Read a story file and implement it. Loads the full context (story,
 argument-hint: "[story-path]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/dev-story/SKILL.md`.
+> Codex slash-prompt. Originally derived from `.claude/skills/dev-story/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 # Dev Story
@@ -83,7 +83,7 @@ Read `docs/architecture/control-manifest.md`. Extract the rules for this story's
 - Performance guardrails
 
 Check: does the story's embedded Manifest Version match the current manifest header date?
-If they differ, use `AskUserQuestion` before proceeding:
+If they differ, use an inline question to the user before proceeding:
 - Prompt: "Story was written against manifest v[story-date]. Current manifest is v[current-date]. New rules may apply. How do you want to proceed?"
 - Options:
   - `[A] Update story manifest version and implement with current rules (Recommended)`
@@ -101,7 +101,7 @@ After extracting the **Dependencies** list from the story file, validate each:
 1. Glob `production/epics/**/*.md` to find each dependency story file.
 2. Read its `Status:` field.
 3. If any dependency has Status other than `Complete` or `Done`:
-   - Use `AskUserQuestion`:
+   - Use an inline question to the user:
      - Prompt: "Story '[current story]' depends on '[dependency title]' which is currently [status], not Complete. How do you want to proceed?"
      - Options:
        - `[A] Proceed anyway — I accept the dependency risk`
@@ -175,7 +175,7 @@ assumptions about post-cutoff engine APIs that need expert verification.
 
 Spawn the chosen programmer agent(s) via the relevant /agent-<name> Codex prompt with the full context package:
 
-Brief the agent with file paths and targeted reading instructions — do not serialize document content into the Task prompt. The agent reads what it needs directly:
+Brief the agent with file paths and targeted reading instructions — do not serialize document content into the agent prompt context. The agent reads what it needs directly:
 
 1. **Story file**: `[story-path]` — read in full
 2. **GDD requirement**: look up TR-ID `[TR-XXX-NNN]` in `docs/architecture/tr-registry.yaml` — use the `requirement` field as source of truth
@@ -281,7 +281,7 @@ If any spawned agent (via the relevant /agent-<name> Codex prompt) returns BLOCK
 
 1. **Surface immediately**: Report "[AgentName]: BLOCKED — [reason]" to the user before continuing to dependent phases
 2. **Assess dependencies**: Check whether the blocked agent's output is required by subsequent phases. If yes, do not proceed past that dependency point without user input.
-3. **Offer options** via AskUserQuestion with choices:
+3. **Offer options** via an inline user question with choices:
    - Skip this agent and note the gap in the final report
    - Retry with narrower scope
    - Stop here and resolve the blocker first

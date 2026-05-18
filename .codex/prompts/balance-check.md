@@ -4,7 +4,7 @@ argument-hint: "[system-name|path-to-data-file]"
 agent: economy-designer
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/balance-check/SKILL.md`.
+> Codex slash-prompt. Originally derived from `.claude/skills/balance-check/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 ## Phase 1: Identify Balance Domain
@@ -100,7 +100,7 @@ Run domain-specific checks:
 
 ## Phase 6: Fix & Verify Cycle
 
-After presenting the report, use `AskUserQuestion`:
+After presenting the report, use an inline question to the user:
 - Prompt: "Balance check complete. What would you like to do next?"
 - Options:
   - `[A] Fix highest-priority issue now — walk me through it`

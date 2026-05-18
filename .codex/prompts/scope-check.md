@@ -3,7 +3,7 @@ description: "Analyze a feature or sprint for scope creep by comparing current s
 argument-hint: "[feature-name or sprint-N]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/scope-check/SKILL.md`.
+> Codex slash-prompt. Originally derived from `.claude/skills/scope-check/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 # Scope Check

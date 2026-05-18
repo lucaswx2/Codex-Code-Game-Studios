@@ -3,7 +3,7 @@ description: "Generate design or architecture documents from existing implementa
 argument-hint: "<type> <path> (e.g., 'design src/gameplay/combat' or 'architecture src/core')"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/reverse-document/SKILL.md`.
+> Codex slash-prompt. Originally derived from `.claude/skills/reverse-document/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 # Reverse Documentation

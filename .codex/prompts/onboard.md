@@ -3,7 +3,7 @@ description: "Generates a contextual onboarding document for a new contributor o
 argument-hint: "[role|area]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/onboard/SKILL.md`.
+> Codex slash-prompt. Originally derived from `.claude/skills/onboard/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 ## Phase 1: Load Project Context

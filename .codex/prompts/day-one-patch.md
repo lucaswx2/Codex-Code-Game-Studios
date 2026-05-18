@@ -3,7 +3,7 @@ description: "Prepare a day-one patch for a game launch. Scopes, prioritises, im
 argument-hint: "[scope: known-bugs | cert-feedback | all]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/day-one-patch/SKILL.md`.
+> Codex slash-prompt. Originally derived from `.claude/skills/day-one-patch/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 # Day-One Patch
@@ -62,7 +62,7 @@ For each open bug, evaluate:
 
 ### Step 2b — Present patch scope to user
 
-Use `AskUserQuestion`:
+Use an inline question to the user:
 - Prompt: "Based on open bugs and cert feedback, here is the proposed day-one patch scope. Does this look right?"
 - Show: table of included bugs (ID, severity, description, estimated effort)
 - Show: table of deferred bugs (ID, severity, reason deferred)
@@ -75,7 +75,7 @@ If [C]: output "No day-one patch required. Proceed to `/launch-checklist`." Stop
 Sum estimated effort. If total exceeds 1 day of work:
 > "⚠️ Patch scope is [N hours] — this exceeds a safe day-one window. Consider deferring lower-priority items to patch 1.1. A bloated day-one patch introduces more risk than it removes."
 
-Use `AskUserQuestion` to confirm proceeding or reduce scope.
+Use an inline question to the user to confirm proceeding or reduce scope.
 
 ---
 
@@ -208,7 +208,7 @@ After the patch record is written:
 **If any S1 bugs remain open after the patch:**
 > "⚠️ S1 bugs remain open and were not patched. These are accepted risks. Document them in the rollback plan trigger conditions — if they occur at scale, rollback may be preferable to a follow-up patch."
 
-Use `AskUserQuestion`:
+Use an inline question to the user:
 - Prompt: "Day-one patch complete. What's next?"
 - Options:
   - `[A] Run /patch-notes — generate player-facing patch notes`

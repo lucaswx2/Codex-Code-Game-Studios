@@ -3,14 +3,14 @@ description: "Orchestrate the narrative team: coordinates narrative-director, wr
 argument-hint: "[narrative content description] [--review full|lean|solo]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/team-narrative/SKILL.md`.
+> Codex slash-prompt. Originally derived from `.claude/skills/team-narrative/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 If no argument is provided, output usage guidance and exit without spawning any agents:
-> Usage: `/team-narrative [narrative content description]` — describe the story content, scene, or narrative area to work on (e.g., `boss encounter cutscene`, `faction intro dialogue`, `tutorial narrative`). Do not use `AskUserQuestion` here; output the guidance directly.
+> Usage: `/team-narrative [narrative content description]` — describe the story content, scene, or narrative area to work on (e.g., `boss encounter cutscene`, `faction intro dialogue`, `tutorial narrative`). Do not use an inline question to the user here; output the guidance directly.
 
 When this skill is invoked with an argument, orchestrate the narrative team through a structured pipeline.
 
-**Decision Points:** At each phase transition, use `AskUserQuestion` to present
+**Decision Points:** At each phase transition, use an inline question to the user to present
 the user with the subagent's proposals as selectable options. Write the agent's
 full analysis in conversation, then capture the decision with concise labels.
 The user must approve before moving to the next phase.
@@ -38,7 +38,7 @@ Store the resolved mode for use in all subsequent phases.
 
 ## How to Delegate
 
-Use the /agent-team-narrative prompt to spawn each team member as a subagent:
+Use the /agent-<name> prompt to spawn each team member as a subagent:
 - `subagent_type: narrative-director` — Story arcs, character design, narrative vision
 - `subagent_type: writer` — Dialogue writing, lore entries, in-game text
 - `subagent_type: world-builder` — World rules, faction design, history, geography
@@ -59,7 +59,7 @@ Delegate to **narrative-director**:
 - Output: narrative brief with story requirements
 
 ### Phase 2: World Foundation (parallel)
-Delegate in parallel — issue all three Task calls simultaneously before waiting for any result:
+Delegate in parallel — issue all three /agent-<name> invocations simultaneously before waiting for any result:
 - **world-builder**: Create or update lore entries for factions, locations, and history relevant to this content. Cross-reference against existing lore for contradictions. Set canon level for new entries.
 - **writer**: Draft character dialogue using voice profiles. Ensure all lines are under 120 characters, use named placeholders for variables, and are localization-ready.
 - **art-director**: Define character visual design direction for key characters appearing in this content (silhouette, visual archetype, distinguishing features). Specify environmental visual storytelling elements for each key space (prop composition, lighting notes, spatial arrangement). Define tone palette and cinematic direction for any cutscenes or scripted sequences.
@@ -90,7 +90,7 @@ If any spawned agent (via the relevant /agent-<name> Codex prompt) returns BLOCK
 
 1. **Surface immediately**: Report "[AgentName]: BLOCKED — [reason]" to the user before continuing to dependent phases
 2. **Assess dependencies**: Check whether the blocked agent's output is required by subsequent phases. If yes, do not proceed past that dependency point without user input.
-3. **Offer options** via AskUserQuestion with choices:
+3. **Offer options** via an inline user question with choices:
    - Skip this agent and note the gap in the final report
    - Retry with narrower scope
    - Stop here and resolve the blocker first

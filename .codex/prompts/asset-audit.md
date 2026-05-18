@@ -3,7 +3,7 @@ description: "Audits game assets for compliance with naming conventions, file si
 argument-hint: "[category|all]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/asset-audit/SKILL.md`.
+> Codex slash-prompt. Originally derived from `.claude/skills/asset-audit/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 ## Phase 1: Read Standards

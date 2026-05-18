@@ -3,7 +3,7 @@ description: "Scan all GDDs against the entity registry to detect cross-document
 argument-hint: "[full | since-last-review | entity:<name> | item:<name>]"
 ---
 
-> Codex slash-prompt. Originally derived from `.claude/skills/consistency-check/SKILL.md`.
+> Codex slash-prompt. Originally derived from `.claude/skills/consistency-check/SKILL.md` (Claude-Code template fork — see `docs/codex/README.md`).
 
 
 # Consistency Check
@@ -283,7 +283,7 @@ Silently append to `production/session-state/active.md` (create the file if it d
 <!-- CONSISTENCY-CHECK: [date] | GDDs checked: [N] | Conflicts found: [N] | Report: docs/consistency-report-[date].md -->
 ```
 
-Then close with an `AskUserQuestion` widget:
+Then close with an an inline question to the user widget:
 
 - **Prompt**: "Consistency check complete — [N] conflicts found. What next?"
 - **Options**:
