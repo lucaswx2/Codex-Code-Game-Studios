@@ -9,7 +9,7 @@ model = "gpt-5-codex"
 sandbox = "workspace-write"
 
 # Approval: on-request means Codex asks before running commands flagged risky
-# by the sandbox. Matches the "ask before write" protocol in CLAUDE.md.
+# by the sandbox. Matches the "ask before write" protocol in AGENTS.md.
 approval_policy = "on-request"
 
 # Project prompts directory. Files under .codex/prompts/<name>.md become
