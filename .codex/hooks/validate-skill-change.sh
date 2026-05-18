@@ -21,13 +21,17 @@ fi
 # Normalize path separators (Windows backslash to forward slash)
 FILE_PATH=$(echo "$FILE_PATH" | sed 's|\\|/|g')
 
-# Only act on files inside .claude/skills/
-if ! echo "$FILE_PATH" | grep -qE '(^|/)\.claude/skills/'; then
+# Only act on files inside .codex/prompts/ or the legacy .claude/skills/
+if ! echo "$FILE_PATH" | grep -qE '(^|/)(\.codex/prompts/|\.claude/skills/)'; then
     exit 0
 fi
 
-# Extract skill name from path (.claude/skills/[skill-name]/SKILL.md)
-SKILL_NAME=$(echo "$FILE_PATH" | grep -oE '\.claude/skills/[^/]+' | sed 's|\.claude/skills/||')
+# Extract skill/prompt name from either layout:
+#   .codex/prompts/[name].md   → name
+#   .claude/skills/[name]/SKILL.md → name
+SKILL_NAME=$(echo "$FILE_PATH" \
+    | grep -oE '(\.codex/prompts/[^/]+\.md|\.claude/skills/[^/]+)' \
+    | sed -E 's|\.codex/prompts/||; s|\.md$||; s|\.claude/skills/||')
 
 if [ -z "$SKILL_NAME" ]; then
     exit 0
