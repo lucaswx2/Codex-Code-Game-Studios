@@ -1,54 +1,16 @@
-# Claude Code Game Studios -- Game Studio Agent Architecture
+# Claude Code Game Studios — Legacy Entry Point
 
-Indie game development managed through 49 coordinated Claude Code subagents.
-Each agent owns a specific domain, enforcing separation of concerns and quality.
+> The canonical project instructions live in [`AGENTS.md`](AGENTS.md).
+> Claude Code reads this file by convention; the content below mirrors
+> `AGENTS.md` via @-includes so both tools see the same project state.
 
-## Technology Stack
+@AGENTS.md
 
-- **Engine**: [CHOOSE: Godot 4 / Unity / Unreal Engine 5]
-- **Language**: [CHOOSE: GDScript / C# / C++ / Blueprint]
-- **Version Control**: Git with trunk-based development
-- **Build System**: [SPECIFY after choosing engine]
-- **Asset Pipeline**: [SPECIFY after choosing engine]
+## Claude-Specific Notes
 
-> **Note**: Engine-specialist agents exist for Godot, Unity, and Unreal with
-> dedicated sub-specialists. Use the set matching your engine.
-
-## Project Structure
-
-@.claude/docs/directory-structure.md
-
-## Engine Version Reference
-
-@docs/engine-reference/godot/VERSION.md
-
-## Technical Preferences
-
-@.claude/docs/technical-preferences.md
-
-## Coordination Rules
-
-@.claude/docs/coordination-rules.md
-
-## Collaboration Protocol
-
-**User-driven collaboration, not autonomous execution.**
-Every task follows: **Question -> Options -> Decision -> Draft -> Approval**
-
-- Agents MUST ask "May I write this to [filepath]?" before using Write/Edit tools
-- Agents MUST show drafts or summaries before requesting approval
-- Multi-file changes require explicit approval for the full changeset
-- No commits without user instruction
-
-See `docs/COLLABORATIVE-DESIGN-PRINCIPLE.md` for full protocol and examples.
-
-> **First session?** If the project has no engine configured and no game concept,
-> run `/start` to begin the guided onboarding flow.
-
-## Coding Standards
-
-@.claude/docs/coding-standards.md
-
-## Context Management
-
-@.claude/docs/context-management.md
+- The Claude `.claude/` tree (agents, skills, hooks, settings.json,
+  statusline.sh) is still functional. Subagent dispatch, the Task tool, and
+  the PreCompact/PostCompact hooks have no Codex equivalents, so this tree
+  is retained for contributors who prefer Claude Code.
+- For the Codex equivalent, see [`docs/codex/README.md`](docs/codex/README.md).
+- For the per-hook mapping, see [`docs/codex/hook-mapping.md`](docs/codex/hook-mapping.md).
