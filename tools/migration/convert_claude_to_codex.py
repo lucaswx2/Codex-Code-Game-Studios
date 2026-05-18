@@ -47,6 +47,45 @@ def _render_frontmatter(fields: dict[str, str]) -> str:
     return "\n".join(rendered)
 
 
+_CLAUDE_REPLACEMENTS: list[tuple[re.Pattern[str], str]] = [
+    # Brand — apply before tool patterns to avoid double rewriting.
+    (re.compile(r"\bClaude Code\b"), "Codex CLI"),
+    (re.compile(r"\bClaude session\b"), "Codex session"),
+    # Tool: Task — multi-word patterns first, narrow enough to skip English "task".
+    (re.compile(
+        r"\bTask\s+in\s+this\s+skill\s+spawns?\s+a\s+SUBAGENT\s+[—-]\s+"
+        r"a\s+separate\s+independent\s+(?:Claude|Codex)\s+session"
+    ), "Each /agent-<name> invocation in this skill runs a separate independent Codex session"),
+    (re.compile(r"\bparallel\s+Tasks?\b"), "parallel /agent-<name> invocations"),
+    (re.compile(r"\bTask\s+calls?\b"), "/agent-<name> invocations"),
+    (re.compile(r"\bTask\s+prompts?\b"), "agent prompt context"),
+    (re.compile(r"\bTask\s+tool\b"), "/agent-<name> prompt"),
+    (re.compile(r"\bTask\s+subagents?\b"), "/agent-<name> invocation"),
+    (re.compile(r"\bvia\s+Task\b", re.IGNORECASE),
+     "via the relevant /agent-<name> Codex prompt"),
+    (re.compile(r"\bspawn\s+a\s+Task\s+(?:tool|call|agent)\b", re.IGNORECASE),
+     "ask the user to invoke /agent-<name>"),
+    # Tool: AskUserQuestion — always the Claude tool; safe to replace globally.
+    (re.compile(r"`AskUserQuestion`"), "an inline question to the user"),
+    (re.compile(r"\bAskUserQuestion\b"), "an inline user question"),
+    # Tool: TodoWrite / TaskCreate family — Codex has no native task tracker.
+    (re.compile(r"\b(?:TodoWrite|TaskCreate|TaskUpdate|TaskList)\b"),
+     "inline progress notes (Codex has no native task tracker)"),
+]
+
+
+def _rewrite_claude_references(text: str) -> str:
+    """Rewrite Claude-Code-specific tool and brand mentions to Codex equivalents.
+
+    Conservative: only rewrites multi-word patterns where context unambiguously
+    means the Claude tool, never bare ``Task`` (which collides with the English
+    word in tables and headings).
+    """
+    for pattern, replacement in _CLAUDE_REPLACEMENTS:
+        text = pattern.sub(replacement, text)
+    return text
+
+
 def convert_skill(source: str, *, slug: str) -> str:
     fields, body = _split_frontmatter(source)
     kept = {
@@ -54,23 +93,11 @@ def convert_skill(source: str, *, slug: str) -> str:
         for key, value in fields.items()
         if key not in CLAUDE_ONLY_SKILL_FIELDS
     }
-    body = re.sub(
-        r"spawn\s+a\s+Task\s+(?:tool|call|agent)",
-        f"ask the user to invoke /agent-{slug}",
-        body,
-        flags=re.IGNORECASE,
-    )
-    body = body.replace("Task agent", f"ask the user to invoke /agent-{slug}")
-    body = body.replace("Task tool", f"/agent-{slug} prompt")
-    body = re.sub(
-        r"\bvia\s+Task\b",
-        "via the relevant /agent-<name> Codex prompt",
-        body,
-        flags=re.IGNORECASE,
-    )
+    body = _rewrite_claude_references(body)
     banner = (
         f"> Codex slash-prompt. Originally derived from "
-        f"`.claude/skills/{slug}/SKILL.md`.\n\n"
+        f"`.claude/skills/{slug}/SKILL.md` (Claude-Code template fork — see "
+        f"`docs/codex/README.md`).\n\n"
     )
     return _render_frontmatter(kept) + "\n" + banner + body
 
@@ -82,11 +109,18 @@ def convert_agent(source: str, *, slug: str) -> str:
         for key, value in fields.items()
         if key not in CLAUDE_ONLY_AGENT_FIELDS
     }
+    body = _rewrite_claude_references(body)
     banner = (
         f"> Codex persona. Invoke via `/agent-{slug}` from the project prompts.\n"
-        f"> Originally derived from `.claude/agents/{slug}.md`.\n\n"
+        f"> Originally derived from `.claude/agents/{slug}.md` "
+        f"(Claude-Code template fork — see `docs/codex/README.md`).\n\n"
     )
     return _render_frontmatter(kept) + "\n" + banner + body
+
+
+def rewrite_doc(source: str) -> str:
+    """Rewrite a free-form documentation file's Claude-Code references in place."""
+    return _rewrite_claude_references(source)
 
 
 def _wrapper_prompt(slug: str, description: str) -> str:
@@ -138,6 +172,27 @@ def _convert_agents_dir(
     return count
 
 
+def _convert_docs(
+    source_dir: pathlib.Path,
+    dest_dir: pathlib.Path,
+    files: list[str] | None,
+) -> int:
+    dest_dir.mkdir(parents=True, exist_ok=True)
+    targets = files or [path.name for path in sorted(source_dir.glob("*.md"))]
+    count = 0
+    for filename in targets:
+        src = source_dir / filename
+        if not src.is_file():
+            print(f"skip {filename}: not found", file=sys.stderr)
+            continue
+        (dest_dir / filename).write_text(
+            rewrite_doc(src.read_text(encoding="utf-8")),
+            encoding="utf-8",
+        )
+        count += 1
+    return count
+
+
 def main(argv: list[str]) -> int:
     parser = argparse.ArgumentParser()
     sub = parser.add_subparsers(dest="mode", required=True)
@@ -148,13 +203,20 @@ def main(argv: list[str]) -> int:
     agents.add_argument("claude_dir", type=pathlib.Path)
     agents.add_argument("personas_dir", type=pathlib.Path)
     agents.add_argument("prompts_dir", type=pathlib.Path)
+    docs = sub.add_parser("docs")
+    docs.add_argument("source_dir", type=pathlib.Path)
+    docs.add_argument("dest_dir", type=pathlib.Path)
+    docs.add_argument("--files", nargs="+", default=None)
     args = parser.parse_args(argv)
     if args.mode == "skills":
         n = _convert_skills_dir(args.claude_dir, args.codex_dir)
         print(f"converted {n} skills")
-    else:
+    elif args.mode == "agents":
         n = _convert_agents_dir(args.claude_dir, args.personas_dir, args.prompts_dir)
         print(f"converted {n} agents")
+    else:
+        n = _convert_docs(args.source_dir, args.dest_dir, args.files)
+        print(f"rewrote {n} docs")
     return 0
 
 

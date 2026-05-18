@@ -1,6 +1,6 @@
 """Unit tests for the Claude→Codex frontmatter converter."""
 import unittest
-from convert_claude_to_codex import convert_skill, convert_agent
+from convert_claude_to_codex import convert_skill, convert_agent, rewrite_doc
 
 
 class ConvertSkillTests(unittest.TestCase):
@@ -49,6 +49,51 @@ class ConvertSkillTests(unittest.TestCase):
         self.assertNotIn("via Task", result)
         self.assertIn("via the relevant /agent-<name> Codex prompt", result)
 
+    def test_rewrites_task_calls(self):
+        src = (
+            "---\nname: x\ndescription: d\n---\n"
+            "Issue all Task calls simultaneously to avoid serialization.\n"
+        )
+        result = convert_skill(src, slug="x")
+        self.assertNotIn("Task call", result)
+        self.assertIn("/agent-<name> invocations", result)
+
+    def test_rewrites_ask_user_question(self):
+        src = (
+            "---\nname: x\ndescription: d\n---\n"
+            "Use `AskUserQuestion` to gather preferences from the user.\n"
+        )
+        result = convert_skill(src, slug="x")
+        self.assertNotIn("AskUserQuestion", result)
+
+    def test_rewrites_claude_code_brand(self):
+        src = (
+            "---\nname: x\ndescription: d\n---\n"
+            "Claude Code reads this file at session start.\n"
+        )
+        result = convert_skill(src, slug="x")
+        self.assertNotIn("Claude Code", result)
+        self.assertIn("Codex CLI", result)
+
+    def test_preserves_task_word_in_table_header(self):
+        src = (
+            "---\nname: x\ndescription: d\n---\n"
+            "| Task | Owner | Status |\n| --- | --- | --- |\n"
+        )
+        result = convert_skill(src, slug="x")
+        self.assertIn("| Task | Owner | Status |", result)
+
+    def test_rewrites_todowrite_family(self):
+        src = (
+            "---\nname: x\ndescription: d\n---\n"
+            "Use TodoWrite to track progress; also TaskCreate and TaskList.\n"
+        )
+        result = convert_skill(src, slug="x")
+        self.assertNotIn("TodoWrite", result)
+        self.assertNotIn("TaskCreate", result)
+        self.assertNotIn("TaskList", result)
+        self.assertIn("inline progress notes", result)
+
 
 class ConvertAgentTests(unittest.TestCase):
     def test_keeps_description_and_drops_claude_fields(self):
@@ -74,6 +119,28 @@ class ConvertAgentTests(unittest.TestCase):
         src = "---\nname: writer\ndescription: d\n---\nBody.\n"
         result = convert_agent(src, slug="writer")
         self.assertIn("/agent-writer", result)
+
+    def test_agent_body_also_rewrites_claude_references(self):
+        src = (
+            "---\nname: a\ndescription: d\n---\n"
+            "Use `AskUserQuestion` and Claude Code conventions.\n"
+        )
+        result = convert_agent(src, slug="a")
+        self.assertNotIn("AskUserQuestion", result)
+        self.assertNotIn("Claude Code", result)
+        self.assertIn("Codex CLI", result)
+
+
+class RewriteDocTests(unittest.TestCase):
+    def test_rewrites_brand_in_freeform_doc(self):
+        result = rewrite_doc("Claude Code session begins here. Use Task calls.")
+        self.assertNotIn("Claude Code", result)
+        self.assertIn("Codex CLI", result)
+        self.assertIn("/agent-<name> invocations", result)
+
+    def test_preserves_unrelated_content(self):
+        src = "## Project Structure\n\nThe /src directory contains source code.\n"
+        self.assertEqual(rewrite_doc(src), src)
 
 
 if __name__ == "__main__":
