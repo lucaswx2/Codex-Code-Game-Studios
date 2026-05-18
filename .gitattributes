@@ -1,0 +1,12 @@
+# Force LF line endings on shell scripts and Codex/Python tooling.
+# Without this, Windows checkouts can introduce CRLF, which breaks bash
+# under WSL ("$'\r': command not found", heredoc parse errors, etc).
+
+*.sh        text eol=lf
+*.py        text eol=lf
+*.toml      text eol=lf
+*.yaml      text eol=lf
+*.yml       text eol=lf
+
+# Auto-detect text for everything else; keep native endings.
+* text=auto
