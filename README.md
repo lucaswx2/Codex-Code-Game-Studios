@@ -161,7 +161,7 @@ All hooks fail gracefully if optional tools are missing — nothing breaks, you 
 
 1. **Clone**:
    ```bash
-   git clone <this-fork-url> my-game
+   git clone https://github.com/lucaswx2/Codex-Code-Game-Studios.git my-game
    cd my-game
    ```
 
