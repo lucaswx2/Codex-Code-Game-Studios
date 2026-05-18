@@ -25,16 +25,27 @@ cd Codex-Code-Game-Studios
 codex
 ```
 
-On startup, Codex:
+> **⚠ First-run hook approval is required.** On the very first launch in
+> this repo, Codex prints `⚠ 5 hooks need review before they can run.`
+> This is the security gate: Codex will not execute project-local hooks
+> until you explicitly approve them.
+>
+> Inside the Codex session, run `/hooks` and approve each of the 5
+> lifecycle hooks (1× `SessionStart`, 2× `PreToolUse`, 2× `PostToolUse`).
+> Then exit (`Ctrl+D` or `/quit`) and re-launch `codex` so the SessionStart
+> banner kicks in.
+
+On startup (after hooks are approved), Codex:
 
 1. Reads `AGENTS.md` for project instructions.
-2. Loads `.codex/config.toml` (sandbox, approval policy, project prompts).
+2. Loads `.codex/config.toml` (sandbox, approval policy, hook wiring).
 3. Runs `.codex/hooks/session-start.sh` which prints branch/sprint/milestone
    context and chains `detect-gaps.sh`.
-4. Exposes 73 skill prompts (`/start`, `/brainstorm`, `/dev-story`, …) and
-   49 persona wrappers (`/agent-game-designer`, `/agent-godot-specialist`, …).
+4. Exposes 73 workflow slash-prompts (`/start`, `/brainstorm`, `/dev-story`, …)
+   and 49 persona wrappers (`/agent-game-designer`, `/agent-godot-specialist`, …).
 
-Type `/` to browse the prompt catalogue.
+Type `/` to browse the prompt catalogue. See [hooks.md](hooks.md) for the
+full lifecycle-hook reference.
 
 ## Git hooks (one-time, per clone)
 

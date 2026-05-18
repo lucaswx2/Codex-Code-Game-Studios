@@ -171,9 +171,26 @@ All hooks fail gracefully if optional tools are missing — nothing breaks, you 
    ```
 
    Codex auto-loads `AGENTS.md` and the hook wiring in `.codex/config.toml`.
-   On first run, approve the 5 lifecycle hooks via `/hooks`.
 
-3. **Run `/start`** — the onboarding prompt asks where you are (no idea,
+3. **Approve the lifecycle hooks (first-run only).** On the first launch,
+   Codex shows a warning: `⚠ 5 hooks need review before they can run.`
+   This is the security gate — Codex will NOT execute project-local hooks
+   until you approve them.
+
+   Inside the Codex session, type:
+   ```
+   /hooks
+   ```
+
+   Review the 5 hooks (`session-start.sh`, two `validate-commit.sh`/`validate-push.sh`
+   for `PreToolUse`, two `validate-assets.sh`/`validate-skill-change.sh` for
+   `PostToolUse`) and approve each one. Exit (`Ctrl+D` or `/quit`) and re-open
+   `codex` to see the SessionStart banner kick in.
+
+   If you skip this step the project still works, but session context and
+   commit-validation hooks won't run.
+
+4. **Run `/start`** — the onboarding prompt asks where you are (no idea,
    vague concept, clear design, existing work) and routes you to the right
    workflow.
 
