@@ -61,7 +61,7 @@ or writing files unilaterally, it won't be merged.
 
 ## Testing Your Changes
 
-Run it in a Claude Code session and confirm it works end-to-end. For skills,
+Run it in a Codex CLI session and confirm it works end-to-end. For skills,
 invoke the skill and verify the output matches what the skill claims to do.
 For hooks, trigger the relevant event and confirm the hook fires correctly
 and exits cleanly.

@@ -1,5 +1,30 @@
 # Upgrading Claude Code Game Studios
 
+## Migrating from Claude Code to Codex CLI (2026-05)
+
+If you've been using this repo under Claude Code and want to switch to
+OpenAI Codex CLI:
+
+1. `npm install -g @openai/codex` and `export OPENAI_API_KEY=sk-...`
+2. From the repo root, run `codex`. It reads `AGENTS.md` (added 2026-05)
+   and `.codex/config.toml` automatically.
+3. Install the git hooks once per clone:
+   ```bash
+   ln -s ../../.codex/hooks/validate-commit.sh .git/hooks/pre-commit
+   ln -s ../../.codex/hooks/validate-push.sh   .git/hooks/pre-push
+   chmod +x .git/hooks/pre-commit .git/hooks/pre-push
+   ```
+4. Prompts are at `.codex/prompts/<slug>.md` (workflow) and
+   `.codex/prompts/agent-<slug>.md` (personas). Type `/` to browse them.
+5. Five Claude lifecycle hooks have no Codex equivalent — see
+   `docs/codex/hook-mapping.md` for the full table.
+
+The legacy `.claude/` tree is still functional; nothing in this migration
+deletes it. A follow-up migration may retire it once Codex parity is
+confirmed in production use.
+
+---
+
 This guide covers upgrading your existing game project repo from one version
 of the template to the next.
 
