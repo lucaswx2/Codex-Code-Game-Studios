@@ -94,7 +94,7 @@ Before writing any code:
 - **Provide ETA**: estimated resolution time (update if it changes)
 - **Post-mortem**: after resolution, explain what happened and what was done to prevent recurrence
 - **Compensate fairly**: if players lost progress or time, offer appropriate compensation
-- Crisis comms template in `.claude/docs/templates/incident-response.md`
+- Crisis comms template in `docs/codex/refs/templates/incident-response.md`
 
 ### Tone and Voice
 - Friendly but professional — never condescending

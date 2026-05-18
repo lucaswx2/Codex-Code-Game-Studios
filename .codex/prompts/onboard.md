@@ -8,7 +8,7 @@ argument-hint: "[role|area]"
 
 ## Phase 1: Load Project Context
 
-Read CLAUDE.md for project overview and standards.
+Read AGENTS.md for project overview and standards.
 
 Read the relevant agent definition from `.codex/personas/` if a specific role is specified.
 
@@ -49,7 +49,7 @@ Read recent changes (git log if available) to understand current momentum.
 |------|---------|--------------|
 
 ## Current Standards and Conventions
-[Summary of conventions relevant to this role from CLAUDE.md and agent definition]
+[Summary of conventions relevant to this role from AGENTS.md and agent definition]
 
 ## Current State of Your Area
 [What has been built, what is in progress, what is planned next]

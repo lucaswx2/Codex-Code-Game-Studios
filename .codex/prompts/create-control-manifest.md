@@ -30,7 +30,7 @@ status. Re-run whenever new ADRs are accepted or existing ADRs are revised.
 - Note the ADR number and title for every rule sourced
 
 ### Technical Preferences
-- Read `.claude/docs/technical-preferences.md`
+- Read `docs/codex/refs/technical-preferences.md`
 - Extract: naming conventions, performance budgets, approved libraries/addons,
   forbidden patterns
 
@@ -129,7 +129,7 @@ Use an inline question to the user:
 - `lean` → skip. Note: "TD-MANIFEST skipped — Lean mode." Proceed to Phase 5.
 - `full` → spawn as normal.
 
-Spawn `technical-director` via the relevant /agent-<name> Codex prompt using gate **TD-MANIFEST** (`.claude/docs/director-gates.md`).
+Spawn `technical-director` via the relevant /agent-<name> Codex prompt using gate **TD-MANIFEST** (`docs/codex/refs/director-gates.md`).
 
 Pass: the Control Manifest Preview from Phase 4 (rule counts per layer, full extracted rule list), the list of ADRs covered, engine version, and any rules sourced from technical-preferences.md or engine reference docs.
 
