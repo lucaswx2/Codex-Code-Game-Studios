@@ -13,7 +13,7 @@ to review and approve each hook (`/hooks` in interactive mode).
 | `PreToolUse` | `^Bash$` | `.codex/hooks/validate-commit.sh` | Inspects git commit commands. Warns on non-Conventional-Commit messages; blocks `.env` files. |
 | `PreToolUse` | `^Bash$` | `.codex/hooks/validate-push.sh` | Inspects git push commands. Blocks force-push to `main`/`master`. |
 | `PostToolUse` | `^(Write\|Edit)$` | `.codex/hooks/validate-assets.sh` | Validates naming conventions on files written under `assets/`. |
-| `PostToolUse` | `^(Write\|Edit)$` | `.codex/hooks/validate-skill-change.sh` | Advises running `/skill-test` after edits to `.codex/prompts/`. |
+| `PostToolUse` | `^(Write\|Edit)$` | `.codex/hooks/validate-skill-change.sh` | Advises running `$skill-test` after edits to `.agents/skills/`. |
 
 ## TOML Syntax
 

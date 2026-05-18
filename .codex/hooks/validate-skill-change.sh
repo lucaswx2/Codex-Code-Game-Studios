@@ -1,6 +1,6 @@
 #!/bin/bash
 # Codex post-write validator: advises running skill-test after prompt file changes.
-# Fires when any file inside .codex/prompts/ is written or edited.
+# Fires when any file inside .agents/skills/ is written or edited.
 #
 # Exit behavior:
 #   exit 0 = advisory only (non-blocking)
@@ -20,15 +20,15 @@ fi
 # Normalize path separators (Windows backslash to forward slash)
 FILE_PATH=$(echo "$FILE_PATH" | sed 's|\\|/|g')
 
-# Only act on files inside .codex/prompts/.
-if ! echo "$FILE_PATH" | grep -qE '(^|/)\.codex/prompts/'; then
+# Only act on files inside .agents/skills/.
+if ! echo "$FILE_PATH" | grep -qE '(^|/)\.agents/skills/'; then
     exit 0
 fi
 
-# Extract prompt name: .codex/prompts/[name].md → name
+# Extract skill name: .agents/skills/[name]/SKILL.md → name
 SKILL_NAME=$(echo "$FILE_PATH" \
-    | grep -oE '\.codex/prompts/[^/]+\.md' \
-    | sed -E 's|\.codex/prompts/||; s|\.md$||')
+    | grep -oE '\.agents/skills/[^/]+' \
+    | sed -E 's|\.agents/skills/||')
 
 if [ -z "$SKILL_NAME" ]; then
     exit 0

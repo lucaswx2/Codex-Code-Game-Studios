@@ -13,10 +13,10 @@ migration session from Donchitos's Claude Code Game Studios; details at
 ### Highlights
 
 - Project instructions in `AGENTS.md` (Codex auto-loads it on session start).
-- 73 workflow slash-prompts under `.codex/prompts/` (e.g. `/start`,
-  `/brainstorm`, `/dev-story`, `/architecture-review`).
-- 49 agent personas invokable as `/agent-<slug>` (e.g. `/agent-game-designer`,
-  `/agent-godot-shader-specialist`).
+- 73 workflow slash-prompts under `.agents/skills/` (e.g. `$start`,
+  `$brainstorm`, `$dev-story`, `$architecture-review`).
+- 49 agent personas invokable as `$agent-<slug>` (e.g. `$agent-game-designer`,
+  `$agent-godot-shader-specialist`).
 - 11 path-scoped coding rules under `.codex/rules/`, referenced from the
   Path-Scoped Rules table in `AGENTS.md`.
 - 5 lifecycle hooks wired via `.codex/config.toml` (`SessionStart`, two

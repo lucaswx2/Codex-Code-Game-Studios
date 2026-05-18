@@ -41,11 +41,13 @@ On startup (after hooks are approved), Codex:
 2. Loads `.codex/config.toml` (sandbox, approval policy, hook wiring).
 3. Runs `.codex/hooks/session-start.sh` which prints branch/sprint/milestone
    context and chains `detect-gaps.sh`.
-4. Exposes 73 workflow slash-prompts (`/start`, `/brainstorm`, `/dev-story`, …)
-   and 49 persona wrappers (`/agent-game-designer`, `/agent-godot-specialist`, …).
+4. Discovers skills under `.agents/skills/`: 73 workflow skills
+   (`$start`, `$brainstorm`, `$dev-story`, …) and 49 persona-adopting
+   skills (`$agent-game-designer`, `$agent-godot-specialist`, …).
 
-Type `/` to browse the prompt catalogue. See [hooks.md](hooks.md) for the
-full lifecycle-hook reference.
+Invoke skills with the `$` prefix or describe your task in natural language
+and Codex auto-selects. `/` is reserved for built-in CLI commands. See
+[hooks.md](hooks.md) for the lifecycle-hook reference.
 
 ## Git hooks (one-time, per clone)
 
@@ -60,14 +62,17 @@ chmod +x .git/hooks/pre-commit .git/hooks/pre-push
 On Windows, create thin `.bat`/`bash` wrappers under `.git/hooks/` that call
 the scripts; symlinks may not work without developer mode.
 
-## Personas vs prompts
+## Skills
 
-- **Slash prompts** under `.codex/prompts/<slug>.md` are workflow tools
-  (`/dev-story`, `/architecture-review`, …). They drive a step-by-step process.
-- **Persona wrappers** under `.codex/prompts/agent-<slug>.md` instruct Codex
-  to adopt the persona body from `.codex/personas/<slug>.md`. Use them when
-  you want domain expertise (e.g. `/agent-game-designer` for mechanics design,
-  `/agent-godot-shader-specialist` for GLSL questions).
+All skills live at `.agents/skills/<name>/SKILL.md`. Two categories:
+
+- **Workflow skills** (`$start`, `$dev-story`, `$architecture-review`, …)
+  drive step-by-step processes. The skill body is the SKILL.md itself.
+- **Persona-adopting skills** (`$agent-game-designer`,
+  `$agent-godot-shader-specialist`, …) consist of two collocated files
+  per skill: `SKILL.md` (the wrapper that tells Codex to adopt the
+  persona) and `persona.md` (the persona body — voice, constraints,
+  collaboration protocol). Use them when you want domain expertise.
 
 ## Hooks
 
@@ -78,5 +83,5 @@ See [hooks.md](hooks.md) for the lifecycle-hook reference and TOML syntax.
 If a workflow that worked under Claude Code does not work under Codex:
 
 1. Check `hooks.md` — the event may not be supported.
-2. Edit the prompt directly at `.codex/prompts/<slug>.md`.
+2. Edit the skill directly at `.agents/skills/<name>/SKILL.md`.
 3. File an issue.

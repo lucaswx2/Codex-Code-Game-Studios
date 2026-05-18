@@ -29,7 +29,7 @@ merged here — keep those in your own repo.
 These are the things that will get your PR rejected if you miss them.
 
 **Skill files**
-- Skills live in `.codex/prompts/<name>.md` — the flat prompt-file format is
+- Skills live in `.agents/skills/<name>/SKILL.md` — the flat prompt-file format is
   required. Subdirectory layouts are not picked up by Codex CLI.
 - SKILL.md must include YAML frontmatter: `name`, `description`,
   `argument-hint`, `allowed-tools`, and `model`

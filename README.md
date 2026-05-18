@@ -9,8 +9,7 @@
 
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License"></a>
-  <a href=".codex/personas"><img src="https://img.shields.io/badge/personas-49-blueviolet" alt="49 Personas"></a>
-  <a href=".codex/prompts"><img src="https://img.shields.io/badge/prompts-73-green" alt="73 Prompts"></a>
+  <a href=".agents/skills"><img src="https://img.shields.io/badge/skills-124-green" alt="124 Skills"></a>
   <a href=".codex/hooks"><img src="https://img.shields.io/badge/hooks-7-orange" alt="7 Hooks"></a>
   <a href=".codex/rules"><img src="https://img.shields.io/badge/rules-11-red" alt="11 Rules"></a>
   <a href="https://github.com/openai/codex"><img src="https://img.shields.io/badge/built%20for-OpenAI%20Codex%20CLI-10a37f?logo=openai&logoColor=white" alt="Built for Codex"></a>
@@ -54,8 +53,7 @@ The result: you still make every decision, but now you have a team that asks the
 
 | Category | Count | Description |
 |----------|-------|-------------|
-| **Personas** | 49 | Specialized agent prompts across design, programming, art, audio, narrative, QA, and production. Invoke with `/agent-<slug>`. |
-| **Prompts** | 73 | Slash-prompts for every workflow phase (`/start`, `/design-system`, `/create-epics`, `/create-stories`, `/dev-story`, `/story-done`, etc.) |
+| **Skills** | 124 | 73 workflow skills + 49 persona-adopting skills. Invoke with `$<skill-name>` (e.g. `$start`, `$agent-game-designer`) or describe the task and let Codex auto-select. All live under `.agents/skills/<name>/SKILL.md`. |
 | **Hooks** | 7 | Automated validation on session start, commits, pushes, asset changes, plus manual `/validate-*` prompts. See `docs/codex/hooks.md`. |
 | **Rules** | 11 | Path-scoped coding standards enforced when editing gameplay, engine, AI, UI, network code, and more |
 | **Templates** | 41 | Document templates for GDDs, UX specs, ADRs, sprint plans, HUD design, accessibility, and more |
@@ -96,43 +94,43 @@ The template includes agent sets for all three major engines. Use the set that m
 
 ## Slash Commands
 
-Type `/` in Codex CLI to access all 73 workflow prompts plus 49 `/agent-*` persona wrappers:
+Skills under `.agents/skills/` are invoked with the `$` prefix (e.g. `$start`, `$brainstorm`, `$agent-game-designer`). The `/` prefix is reserved for built-in Codex CLI commands (`/hooks`, `/model`, `/review`, `/quit`). Codex can also auto-select a skill when you describe a task in natural language.
 
 **Onboarding & Navigation**
-`/start` `/help` `/project-stage-detect` `/setup-engine` `/adopt`
+`$start` `$help` `$project-stage-detect` `$setup-engine` `$adopt`
 
 **Game Design**
-`/brainstorm` `/map-systems` `/design-system` `/quick-design` `/review-all-gdds` `/propagate-design-change`
+`$brainstorm` `$map-systems` `$design-system` `$quick-design` `$review-all-gdds` `$propagate-design-change`
 
 **Art & Assets**
-`/art-bible` `/asset-spec` `/asset-audit`
+`$art-bible` `$asset-spec` `$asset-audit`
 
 **UX & Interface Design**
-`/ux-design` `/ux-review`
+`$ux-design` `$ux-review`
 
 **Architecture**
-`/create-architecture` `/architecture-decision` `/architecture-review` `/create-control-manifest`
+`$create-architecture` `$architecture-decision` `$architecture-review` `$create-control-manifest`
 
 **Stories & Sprints**
-`/create-epics` `/create-stories` `/dev-story` `/sprint-plan` `/sprint-status` `/story-readiness` `/story-done` `/estimate`
+`$create-epics` `$create-stories` `$dev-story` `$sprint-plan` `$sprint-status` `$story-readiness` `$story-done` `$estimate`
 
 **Reviews & Analysis**
-`/design-review` `/code-review` `/balance-check` `/content-audit` `/scope-check` `/perf-profile` `/tech-debt` `/gate-check` `/consistency-check` `/security-audit`
+`$design-review` `$code-review` `$balance-check` `$content-audit` `$scope-check` `$perf-profile` `$tech-debt` `$gate-check` `$consistency-check` `$security-audit`
 
 **QA & Testing**
-`/qa-plan` `/smoke-check` `/soak-test` `/regression-suite` `/test-setup` `/test-helpers` `/test-evidence-review` `/test-flakiness` `/skill-test` `/skill-improve`
+`$qa-plan` `$smoke-check` `$soak-test` `$regression-suite` `$test-setup` `$test-helpers` `$test-evidence-review` `$test-flakiness` `$skill-test` `$skill-improve`
 
 **Production**
-`/milestone-review` `/retrospective` `/bug-report` `/bug-triage` `/reverse-document` `/playtest-report`
+`$milestone-review` `$retrospective` `$bug-report` `$bug-triage` `$reverse-document` `$playtest-report`
 
 **Release**
-`/release-checklist` `/launch-checklist` `/changelog` `/patch-notes` `/hotfix` `/day-one-patch`
+`$release-checklist` `$launch-checklist` `$changelog` `$patch-notes` `$hotfix` `$day-one-patch`
 
 **Creative & Content**
-`/prototype` `/onboard` `/localize`
+`$prototype` `$onboard` `$localize`
 
 **Team Orchestration** (coordinate multiple agents on a single feature)
-`/team-combat` `/team-narrative` `/team-ui` `/team-release` `/team-polish` `/team-audio` `/team-level` `/team-live-ops` `/team-qa`
+`$team-combat` `$team-narrative` `$team-ui` `$team-release` `$team-polish` `$team-audio` `$team-level` `$team-live-ops` `$team-qa`
 
 ## Getting Started
 
@@ -141,7 +139,7 @@ Type `/` in Codex CLI to access all 73 workflow prompts plus 49 `/agent-*` perso
 ```bash
 npm install -g @openai/codex
 export OPENAI_API_KEY=sk-...
-git clone <this-repo>
+git clone https://github.com/lucaswx2/Codex-Code-Game-Studios.git
 cd Codex-Code-Game-Studios
 codex
 ```
@@ -190,14 +188,14 @@ All hooks fail gracefully if optional tools are missing — nothing breaks, you 
    If you skip this step the project still works, but session context and
    commit-validation hooks won't run.
 
-4. **Run `/start`** — the onboarding prompt asks where you are (no idea,
+4. **Run `$start`** — the onboarding prompt asks where you are (no idea,
    vague concept, clear design, existing work) and routes you to the right
    workflow.
 
    Or jump directly to a specific prompt if you already know what you need:
-   - `/brainstorm` — explore game ideas from scratch
+   - `$brainstorm` — explore game ideas from scratch
    - `/setup-engine godot 4.6` — configure your engine if you already know
-   - `/project-stage-detect` — analyze an existing project
+   - `$project-stage-detect` — analyze an existing project
 
 ## Upgrading
 
@@ -209,10 +207,10 @@ versions, and which files are safe to overwrite vs. which need a manual merge.
 
 ```
 AGENTS.md                           # Project instructions (Codex auto-loads)
+.agents/
+  skills/                           # 124 skills (73 workflow + 49 agent-*) — invoke with $<name>
 .codex/
   config.toml                       # Codex CLI configuration (model, sandbox, hooks)
-  prompts/                          # 73 workflow slash-prompts + 49 /agent-<slug> wrappers
-  personas/                         # 49 persona bodies referenced by agent-* wrappers
   hooks/                            # 7 lifecycle hook scripts (bash)
   rules/                            # 11 path-scoped coding standards
   persona-memory/                   # Long-lived per-persona notes
@@ -259,11 +257,11 @@ You stay in control. The agents provide structure and expertise, not autonomy.
 | Hook | Trigger | What It Does |
 |------|---------|--------------|
 | `session-start.sh` | `SessionStart` | Shows current branch, recent commits, sprint/milestone context; chains `detect-gaps.sh` to surface missing docs |
-| `detect-gaps.sh` | chained from SessionStart | Detects fresh projects (suggests `/start`) and missing design docs when code or prototypes exist |
+| `detect-gaps.sh` | chained from SessionStart | Detects fresh projects (suggests `$start`) and missing design docs when code or prototypes exist |
 | `validate-commit.sh` | `PreToolUse` (`^Bash$`) | Warns on non-Conventional-Commit messages; blocks `.env` files |
 | `validate-push.sh` | `PreToolUse` (`^Bash$`) | Blocks force-push to `main`/`master` |
 | `validate-assets.sh` | `PostToolUse` (`^(Write\|Edit)$`) | Validates naming conventions on files written under `assets/` |
-| `validate-skill-change.sh` | `PostToolUse` (`^(Write\|Edit)$`) | Advises running `/skill-test` after edits to `.codex/prompts/` |
+| `validate-skill-change.sh` | `PostToolUse` (`^(Write\|Edit)$`) | Advises running `$skill-test` after edits to `.agents/skills/` |
 | `notify.sh` | user-level `notify` | Windows toast notifier; wire it in `~/.codex/config.toml` if you want it |
 
 > **Note**: PreToolUse hooks fire on every Bash invocation and exit 0 silently when the command is not relevant. This is normal hook behavior — not a performance concern.
@@ -305,7 +303,7 @@ This is a **template**, not a locked framework. Everything is meant to be custom
 - **Add rules** — create new path-scoped rules for your project's directory structure
 - **Tune hooks** — adjust validation strictness, add new checks
 - **Pick your engine** — use the Godot, Unity, or Unreal agent set (or none)
-- **Set review intensity** — `full` (all director gates), `lean` (phase gates only), or `solo` (none). Set during `/start` or edit `production/review-mode.txt`. Override per-run with `--review solo` on any skill.
+- **Set review intensity** — `full` (all director gates), `lean` (phase gates only), or `solo` (none). Set during `$start` or edit `production/review-mode.txt`. Override per-run with `--review solo` on any skill.
 
 ## Platform Support
 

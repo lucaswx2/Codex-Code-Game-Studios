@@ -85,9 +85,11 @@ durable observations as they accrue.
 
 ## Codex-Specific Notes
 
-- Custom slash-prompts live under `.codex/prompts/`. Type `/` in interactive
-  mode to list them. Persona prompts use the `agent-<slug>` prefix
-  (e.g. `/agent-game-designer`).
+- Skills live under `.agents/skills/<name>/SKILL.md` (Codex CLI's
+  conventional location). Invoke them with the `$` prefix
+  (e.g. `$start`, `$agent-game-designer`) or describe the task and let
+  Codex auto-select. The `/` prefix is reserved for built-in Codex
+  commands (`/hooks`, `/model`, `/review`, `/quit`).
 - The Codex config is `.codex/config.toml`. Per-user secrets belong in
   `~/.codex/config.toml`, not this file.
 - See [docs/codex/README.md](docs/codex/README.md) for setup and hook

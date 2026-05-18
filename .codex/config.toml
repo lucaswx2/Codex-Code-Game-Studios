@@ -15,10 +15,10 @@ sandbox = "workspace-write"
 # by the sandbox. Matches the "ask before write" protocol in AGENTS.md.
 approval_policy = "on-request"
 
-# Custom slash-prompts under .codex/prompts/<name>.md are auto-discovered by
-# Codex CLI by convention (no explicit config key). Type `/` in interactive
-# mode to list them. Persona prompts use the `agent-<slug>` prefix
-# (e.g. `/agent-game-designer`).
+# Skills live at .agents/skills/<name>/SKILL.md (Codex CLI auto-discovers).
+# Invoke with the $ prefix (e.g. $start, $agent-game-designer) or describe
+# the task in natural language. The / prefix is reserved for built-in
+# Codex commands.
 
 # Lifecycle hooks — TOML arrays of tables with PascalCase event names.
 # Project-local hooks require the user to trust this project on first run.
