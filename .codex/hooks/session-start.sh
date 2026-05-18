@@ -72,10 +72,11 @@ if [ -f "$STATE_FILE" ]; then
 fi
 
 echo "==================================="
-exit 0
 
 # Chain detect-gaps so Codex gets the same dual-hook behavior the Claude
 # SessionStart matcher provided.
 if [ -x "$(dirname "$0")/detect-gaps.sh" ]; then
     bash "$(dirname "$0")/detect-gaps.sh"
 fi
+
+exit 0
